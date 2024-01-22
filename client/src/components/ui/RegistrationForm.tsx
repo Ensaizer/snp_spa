@@ -1,7 +1,19 @@
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 import React from 'react';
+import { useAppDispatch } from '../../store/hooks';
+import { registrationHandlerThunk } from '../../store/slices/auth/authThunks';
 
-export default function RegistrationForm() {
+export default function RegistrationForm(): JSX.Element {
   const dispatch = useAppDispatch();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -33,7 +45,11 @@ export default function RegistrationForm() {
             // onChange={handleChange}
           >
             <FormControlLabel value="физическое лицо" control={<Radio />} label="Физическое лицо" />
-            <FormControlLabel value="юридическое лицо" control={<Radio />} label="Юридическое лицо" />
+            <FormControlLabel
+              value="юридическое лицо"
+              control={<Radio />}
+              label="Юридическое лицо"
+            />
           </RadioGroup>
         </FormControl>
         <FormControl>
