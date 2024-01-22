@@ -6,10 +6,10 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    // border: '2px solid #fff',
     boxShadow: 24,
+    textAlign: 'center',
     p: 4,
 };
 
@@ -27,7 +27,7 @@ export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
                    Войти
                 </Typography>
                     <Box component="form">
@@ -37,7 +37,7 @@ export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
                         <Box mb={2}>
                             <TextField name="password" label="Пароль" type="password" required />
                         </Box>
-                        <Button type="submit">Зарегистрироваться</Button>
+                        <Button type="submit" variant ='contained'>Войти</Button>
                     </Box>
             </Box>
         </ModalMUI>
