@@ -9,8 +9,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import App from './App';
 import ProfilePage from './components/pages/ProfilePage';
-import Registration from './components/ui/Registration';
 import Product from './components/Product';
+import RegistrationPage from './components/pages/RegistrationPage';
 
 
 
