@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AuthState, LoginFormData, RegistrationFormData, UserType } from '../types/auth/index';
 
 export const authInstance = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/',
+  baseURL: 'http://localhost:3000/api/products',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

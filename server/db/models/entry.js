@@ -1,4 +1,4 @@
-const { Model } = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Entry extends Model {
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Order, { foreignKey: 'orderId' });
-      this.hasMany(models.Product, { foreignKey: 'productId' });
+      this.belongsTo(models.Order, { foreignKey: "orderId" });
+      this.belongsTo(models.Product, { foreignKey: "productId" });
     }
   }
   Entry.init(
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Entry',
+      modelName: "Entry",
     },
   );
   return Entry;

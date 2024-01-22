@@ -1,4 +1,4 @@
-const { Model } = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Product, { foreignKey: 'productId' });
-      this.belongsTo(models.User, { foreignKey: 'userId' });
+      this.belongsTo(models.Product, { foreignKey: "productId" });
+      this.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
   Cart.init(
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Cart',
+      modelName: "Cart",
     },
   );
   return Cart;
