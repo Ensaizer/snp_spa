@@ -1,4 +1,4 @@
-const { Model } = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Cart extends Model {
@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // define association her
       this.belongsTo(models.Product, { foreignKey: 'productId' });
       this.belongsTo(models.User, { foreignKey: 'userId' });
+
     }
   }
   Cart.init(
@@ -21,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Cart',
+      modelName: "Cart",
     },
   );
   return Cart;
