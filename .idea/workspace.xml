@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b6dbfcc-048c-409e-8639-35776bfaf265" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Modal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/pages/AdminPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/AdminPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ui/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ui/RegistrationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/RegistrationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/authService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/slices/auth/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/slices/auth/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/migrations/20240122064544-create-user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/migrations/20240122064544-create-user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/models/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/models/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/models/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/authRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/authRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
