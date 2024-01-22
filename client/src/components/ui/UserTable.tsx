@@ -20,7 +20,15 @@ function createData(
   carbs: number,
   protein: number,
   price: number,
-) {
+): {
+  name: string;
+  calories: number;
+  carbs: number;
+  protein: number;
+  price: number;
+  fat: number;
+  history: { date: string; customerId: string; amount: number }[];
+} {
   return {
     name,
     calories,
