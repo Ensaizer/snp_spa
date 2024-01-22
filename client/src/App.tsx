@@ -1,7 +1,7 @@
 import React from 'react';
-import NavBar from "./components/ui/NavBar.tsx";
 import {Outlet, useLocation} from "react-router-dom";
-import MainPage from "./components/pages/MainPage.tsx";
+import NavBar from "./components/ui/NavBar";
+import MainPage from "./components/pages/MainPage";
 
 function App(): JSX.Element {
     const {pathname } = useLocation();

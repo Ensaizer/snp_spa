@@ -12,11 +12,13 @@ authRouter.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
+
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) return res.status(400).json({ message: 'Invalid password' });
 
+    if (!user.isApproved) return res.status(400).json({ message: 'User is not approved' });
     const plainUser = user.get();
     delete plainUser.password;
     const { accessToken, refreshToken } = generateTokens({
@@ -39,16 +41,7 @@ authRouter.post('/registration', async (req, res) => {
       defaults: { name, password: await bcrypt.hash(password, 10) },
     });
     if (!created) return res.status(400).json({ message: 'Email already exists' });
-
-    const plainUser = user.get();
-    delete plainUser.password;
-    const { accessToken, refreshToken } = generateTokens({
-      user: plainUser,
-    });
-    return res
-      .cookie(jwtConfig.refresh.name, refreshToken, cookiesConfig.refresh)
-      .status(200)
-      .json({ accessToken, user: plainUser });
+    if (user) return res.status(200).json({ message: 'User created' });
   } catch (error) {
     return res.status(500).json(error);
   }
