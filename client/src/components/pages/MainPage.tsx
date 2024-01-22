@@ -1,12 +1,16 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import Search from '../ui/Search';
+import Carousel from '../ui/Carousel';
 
 function MainPage(): JSX.Element {
   return (
-    <Box>
+    <>
       <Search />
-    </Box>
+      <Container>
+        <Carousel/>
+      </Container>
+    </>
   );
 }
 

@@ -1,24 +1,25 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const { User } = require('../../db/models');
-const generateTokens = require('../utils/generateTokens');
-const jwtConfig = require('../config/jwtConfig');
-const cookiesConfig = require('../config/cookiesConfig');
-const verifyRefreshToken = require('../middlewares/verifyRefreshToken');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const { User, Organization } = require("../../db/models");
+const generateTokens = require("../utils/generateTokens");
+const jwtConfig = require("../config/jwtConfig");
+const cookiesConfig = require("../config/cookiesConfig");
+const verifyRefreshToken = require("../middlewares/verifyRefreshToken");
 
 const authRouter = express.Router();
 
-authRouter.post('/login', async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return res.status(400).json({ message: 'Invalid password' });
+    if (!isValid) return res.status(400).json({ message: "Invalid password" });
 
-    if (!user.isApproved) return res.status(400).json({ message: 'User is not approved' });
+    if (!user.isApproved)
+      return res.status(400).json({ message: "User is not approved" });
     const plainUser = user.get();
     delete plainUser.password;
     const { accessToken, refreshToken } = generateTokens({
@@ -33,26 +34,38 @@ authRouter.post('/login', async (req, res) => {
   }
 });
 
-authRouter.post('/registration', async (req, res) => {
+authRouter.post("/registration", async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, userType, phone, deliveryAddress, ...rest } =
+      req.body;
     const [user, created] = await User.findOrCreate({
       where: { email },
-      defaults: { name, password: await bcrypt.hash(password, 10) },
+      defaults: {
+        name,
+        password: await bcrypt.hash(password, 10),
+        userType,
+        phone,
+        deliveryAddress,
+      },
     });
-    if (!created) return res.status(400).json({ message: 'Email already exists' });
-    if (user) return res.status(200).json({ message: 'User created' });
+    if (!created)
+      return res.status(400).json({ message: "Email already exists" });
+    if (rest) {
+      rest.userId = user.id;
+      await Organization.create(rest);
+    }
+    if (user) return res.status(200).json({ message: "User created" });
   } catch (error) {
     return res.status(500).json(error);
   }
 });
 
-authRouter.get('/logout', (req, res) => {
+authRouter.get("/logout", (req, res) => {
   res.clearCookie(jwtConfig.refresh.name).sendStatus(200);
 });
 
-authRouter.get('/check', verifyRefreshToken, (req, res) => {
-  res.json({ user: res.locals.user, accessToken: '' });
+authRouter.get("/check", verifyRefreshToken, (req, res) => {
+  res.json({ user: res.locals.user, accessToken: "" });
 });
 
 module.exports = authRouter;
