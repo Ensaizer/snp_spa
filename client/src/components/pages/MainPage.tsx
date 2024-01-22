@@ -1,11 +1,7 @@
 import React from 'react';
 
-const MainPage = () => {
-    return (
-        <div>
-            Hello
-        </div>
-    );
-};
+function MainPage(): JSX.Element {
+  return <div>Hello</div>;
+}
 
 export default MainPage;

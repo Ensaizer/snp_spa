@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,24 +8,27 @@ import { store } from './store/store';
 import App from './App';
 import ProfilePage from './components/pages/ProfilePage';
 
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      //   {
-      //     path: '/registration',
-      //     element: <Registration />,
-      //   },
+
+      {
+        path: '/registration',
+        element: <RegistrationPage />,
+      },
       //   {
       //     path: '/login',
       //     element: <Login />,
       //   },
-      {
-        path: '/profile',
-        element: <ProfilePage />,
-      },
       //   {
+      //     path: '/profile',
+      //     element: <Profile />,
+      //   },
+      //   {
+
       //     path: '/cart',
       //     element: <Cart />,
       //   },
