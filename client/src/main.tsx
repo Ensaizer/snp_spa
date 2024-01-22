@@ -1,25 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+
+
+
+import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
+import { Provider } from 'react-redux';
 import { store } from './store/store';
+import App from './App';
+import ProfilePage from './components/pages/ProfilePage';
 import Registration from './components/ui/Registration';
 import Product from './components/Product';
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+
       {
+
         path: 'registration',
-        element: <Registration />,
+        element: <RegistrationPage/>,
       },
       {
         path: 'products/:id',
-        element: <Product />,
+        element: <ProductPage />,
+
       },
+      //   {
+      //     path: '/login',
+      //     element: <Login />,
+      //   },
+      //   {
+      //     path: '/profile',
+      //     element: <Profile />,
+      //   },
+      //   {
+
+      //     path: '/cart',
+      //     element: <Cart />,
+      //   },
     ],
   },
 ]);
