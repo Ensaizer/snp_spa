@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
-import { store } from './store/store';
-import AdminPage from './AdminPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { store } from './store/store.ts';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -13,21 +12,21 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/admin',
-        element: <AdminPage />,
+        path: '/registration',
+        element: <Registration />,
       },
-      //   {
-      //       path: "/login",
-      //       element: <Login/>,
-      //   },
-      //   {
-      //       path: "/profile",
-      //       element: <Profile/>,
-      //   },
-      //   {
-      //       path: "/cart",
-      //       element: <Cart/>,
-      //   },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
     ],
   },
 ]);
