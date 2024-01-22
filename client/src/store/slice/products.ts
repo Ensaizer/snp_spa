@@ -1,7 +1,10 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { IProduct, StateProducts } from '../../types/ProductType';
-import { addOneProductThunk, getOneProductByIdThunk } from './ProductThunk';
+import {
+  addOneProductThunk,
+  getOneProductByIdThunk,
+  updateOneProductByIdThunk,
+} from './ProductThunk';
 
 const initState: StateProducts = {
   products: [] as IProduct[],
@@ -14,19 +17,20 @@ const productSlice = createSlice({
   initialState: initState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getOneProductByIdThunk.fulfilled, (state, action: PayloadAction<IProduct>) => {
+    builder.addCase(getOneProductByIdThunk.fulfilled, (state, action) => {
       state.activeProduct = action.payload;
       state.isLoading = false;
       state.error = '';
     });
     builder.addCase(getOneProductByIdThunk.pending, (state) => {
       state.isLoading = true;
+      state.error = '';
     });
-    builder.addCase(getOneProductByIdThunk.rejected, (state, action: PayloadAction<any>) => {
+    builder.addCase(getOneProductByIdThunk.rejected, (state, action) => {
       state.error = action.error.message as string;
       state.isLoading = false;
     });
-    builder.addCase(addOneProductThunk.fulfilled, (state, action: PayloadAction<IProduct>) => {
+    builder.addCase(addOneProductThunk.fulfilled, (state, action) => {
       state.products = state.products.unshift(action.payload);
       state.isLoading = false;
       state.error = '';
@@ -35,13 +39,23 @@ const productSlice = createSlice({
       state.isLoading = true;
       state.error = '';
     });
-    builder.addCase(addOneProductThunk.rejected, (state, action: PayloadAction<any>) => {
-      state.error = action.payload.errorMessage;
+    builder.addCase(addOneProductThunk.rejected, (state, action) => {
+      state.error = action.error.message as string;
       state.isLoading = false;
+    });
+    builder.addCase(updateOneProductByIdThunk.rejected, (state, action) => {
+      state.error = action.error.message as string;
+      state.isLoading = false;
+    });
+    builder.addCase(updateOneProductByIdThunk.fulfilled, (state, action) => {
+      state.activeProduct = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(updateOneProductByIdThunk.pending, (state) => {
+      state.error = '';
+      state.isLoading = true;
     });
   },
 });
-
-export const { getOneProductById, addOneProduct } = productSlice.actions;
 
 export default productSlice.reducer;

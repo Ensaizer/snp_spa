@@ -1,6 +1,6 @@
 import {Box, IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Search(): JSX.Element {
   const [inputValue, setInputValue] = useState('');
@@ -30,20 +30,20 @@ export default function Search(): JSX.Element {
     setInputValue('');
   };
   return (
-    <Box>
+    <Box sx={{height: '250px', backgroundColor: 'black', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <Paper
         component="form"
         sx={{
           p: '2px 4px',
           display: 'flex',
           alignItems: 'center',
-          width: 400,
+          width: 600,
         }}
         onSubmit={submitHandler}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Введите артикулл запчасти"
+          placeholder="Введите артикул запчасти"
           value={inputValue}
           inputProps={{ 'aria-label': 'search user by name' }}
           onChange={changeHandler}

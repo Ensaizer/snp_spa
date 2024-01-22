@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js --env-file .env",
+    "start": "nodemon src/server.js --env-file .env",
     "db": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "keywords": [],
@@ -28,6 +28,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.0.3",
     "pg": "^8.11.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"

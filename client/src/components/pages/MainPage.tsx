@@ -1,10 +1,13 @@
 import React from 'react';
+import { Box } from '@mui/material';
 import Search from '../ui/Search';
 
 function MainPage(): JSX.Element {
-  return <div >
-    <Search/>
-  </div>;
+  return (
+    <Box>
+      <Search />
+    </Box>
+  );
 }
 
 export default MainPage;
