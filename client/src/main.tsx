@@ -1,19 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+
+
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from './App';
 import { store } from './store/store';
-import RegistrationPage from './components/pages/RegistrationPage';
+import App from './App';
+import ProfilePage from './components/pages/ProfilePage';
+import Registration from './components/ui/Registration';
+import Product from './components/Product';
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+
       {
-        path: '/registration',
-        element: <RegistrationPage />,
+
+        path: 'registration',
+        element: <RegistrationPage/>,
+      },
+      {
+        path: 'products/:id',
+        element: <ProductPage />,
+
       },
       //   {
       //     path: '/login',
@@ -24,6 +39,7 @@ const router = createBrowserRouter([
       //     element: <Profile />,
       //   },
       //   {
+
       //     path: '/cart',
       //     element: <Cart />,
       //   },
