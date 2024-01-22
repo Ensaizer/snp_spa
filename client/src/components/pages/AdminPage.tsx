@@ -5,7 +5,6 @@ export default function AdminPage(): JSX.Element {
   return (
     <>
       <CollapsibleTable />
-      <div />
       <CollapsibleTable />
     </>
   );

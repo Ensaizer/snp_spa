@@ -2,36 +2,47 @@
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert(
-      'Categories',
+      "Categories",
       Array(1)
-        .fill('x')
+        .fill("x")
         .map(() => ({
-          name: 'Volvo',
+          name: "Volvo",
         })),
       {},
     );
     await queryInterface.bulkInsert(
-      'Brands',
+      "Brands",
       Array(1)
-        .fill('x')
+        .fill("x")
         .map(() => ({
-          name: 'Product',
-          description: 'Description',
-          logoPath: 'kekke',
+          name: "Product",
+          description: "Description",
+          logoPath: "kekke",
         })),
       {},
     );
+
     await queryInterface.bulkInsert(
-      'Products',
+      "Roles",
+      Array(1)
+        .fill("x")
+        .map(() => ({
+          name: "customer",
+        })),
+      {},
+    );
+
+    await queryInterface.bulkInsert(
+      "Products",
       Array(5)
-        .fill('x')
+        .fill("x")
         .map(() => ({
           article: Math.random() * 100,
           brandId: 1,
           categoryId: 1,
           deliveryTime: String(Math.floor(Math.random() * 10) + 1),
-          name: 'Product',
-          description: 'Description',
+          name: "Product",
+          description: "Description",
           minOrder: Math.random() * 10,
           multiplicity: Math.random() * 10,
           stock: Math.random() * 100,
@@ -42,6 +53,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete('Products', null, {});
+    await queryInterface.bulkDelete("Products", null, {});
   },
 };

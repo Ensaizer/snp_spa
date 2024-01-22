@@ -9,9 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from '../Modal';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { logoutHandlerThunk } from '../../store/slices/auth/authThunks';
 
 function NavBar(): JSX.Element {
   const [open, setOpen] = useState(false);
+  const { user } = useAppSelector((state) => state.auth);
+
+  const dispatch = useAppDispatch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,18 +30,34 @@ function NavBar(): JSX.Element {
           <Button color="inherit" component={NavLink} to="/">
             Главная
           </Button>
-          <Button color="inherit" onClick={() => setOpen(true)}>
-            Войти
-          </Button>
-          <Button color="inherit" component={NavLink} to="/registration">
-            Регистрация
-          </Button>
-          <Button color="inherit" component={NavLink} to="/basket">
-            Корзина
-          </Button>
-          <Button color="inherit" component={NavLink} to="/profile">
-            Профиль
-          </Button>
+          {user.status !== 'authenticated' && (
+            <>
+              <Button color="inherit" onClick={() => setOpen(true)}>
+                Войти
+              </Button>
+              <Button color="inherit" component={NavLink} to="/registration">
+                Регистрация
+              </Button>
+            </>
+          )}
+          {user.status === 'authenticated' && (
+            <>
+              <Button color="inherit" component={NavLink} to="/profile">
+                Профиль
+              </Button>
+              <Button color="inherit" component={NavLink} to="/basket">
+                Корзина
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  void dispatch(logoutHandlerThunk());
+                }}
+              >
+                Выйти
+              </Button>
+            </>
+          )}
           <Modal open={open} handleClose={() => setOpen(false)} />
         </Toolbar>
       </AppBar>
