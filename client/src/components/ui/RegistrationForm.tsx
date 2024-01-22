@@ -19,7 +19,6 @@ export default function RegistrationForm(): JSX.Element {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setType((event.target as HTMLInputElement).value);
   };
-  console.log(type);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -102,7 +101,7 @@ export default function RegistrationForm(): JSX.Element {
               <TextField name="KPP" label="КПП" type="text" required />
             </Box>
             <Box mb={1}>
-              <TextField name="ORGN" label="ОГРН" type="text" required fullWidth />
+              <TextField name="OGRN" label="ОГРН" type="text" required fullWidth />
             </Box>
             <Box mb={1}>
               <TextField
