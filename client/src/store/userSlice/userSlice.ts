@@ -8,6 +8,16 @@ export const usersApi = createApi({
     endpoints: (builder) => ({
         getAllUsers: builder.query<UserType[], string>({
             query: () => `/`,
+            providesTags: (result) =>
+                // is result available?
+                result
+                    ? // successful query
+                    [
+                        ...result.map(({ id }) => ({ type: 'Users', id } as const)),
+                        { type: 'Users', id: 'LIST' },
+                    ]
+                    : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
+                    [{ type: 'Users', id: 'LIST' }],
         }),
         getAllCustomers: builder.query<UserType[], string>({
             query: () => `/customers`,
@@ -15,13 +25,14 @@ export const usersApi = createApi({
         getAllPartners: builder.query<UserType[], string>({
             query: () => `/partners`,
         }),
-        deleteUser: builder.mutation<{ success: boolean; id: number }, number>({
+        deleteUser: builder.mutation<{ id: number }, { id: number }>({
             query(id) {
                 return {
                     url: `/${id}`,
                     method: 'DELETE',
                 }
             },
+            invalidatesTags: (result, id) => [{ type: 'Users', id }],
         }),
         updateUser: builder.mutation<UserType, Partial<UserType>>({
             query(data) {
@@ -32,6 +43,7 @@ export const usersApi = createApi({
                     body,
                 }
             },
+            invalidatesTags: (result, id) => [{ type: 'Users', id }],
         }),
     })
 });
