@@ -15,9 +15,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button } from '@mui/material';
 import type { UserType } from '../../types/auth';
 import { useDeleteUserMutation, useGetAllUsersQuery } from '../../store/userSlice/userSlice';
-import type { OrganizationType } from '../../types';
 
-function Row(props: { user: UserType; deleteUserHandler }): JSX.Element {
+function Row(props: { user: UserType; deleteUserHandler: (id: number) => void }): JSX.Element {
   const { user, deleteUserHandler } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -91,9 +90,7 @@ export default function CollapsibleTable(): JSX.Element {
   const [deleteUserMutation] = useDeleteUserMutation();
   const unApprovedUsers = data ? data.filter((user) => user.isApproved) : [];
   const deleteUserHandler = async (id: UserType['id']): Promise<void> => {
-    await deleteUserMutation(id);
-    console.log(id);
-    // setAya(aya.filter((user) => user.id !== id));
+    await deleteUserMutation({ id });
   };
   return (
     <TableContainer component={Paper}>
