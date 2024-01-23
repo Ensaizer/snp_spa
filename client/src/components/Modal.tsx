@@ -41,7 +41,7 @@ export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
           }}
         >
           <Box mb={2}>
-            <TextField name="email" label="Почта" type="email" required />
+            <TextField name="email" label="Электронная почта" type="email" required />
           </Box>
           <Box mb={2}>
             <TextField name="password" label="Пароль" type="password" required />

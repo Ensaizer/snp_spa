@@ -33,6 +33,12 @@ class ApiProduct {
     const { data } = await apiProductsService.patch<IProduct>(`/${id}`, formData);
     return data;
   }
+
+  static async searchProducts(input:string): Promise<IProduct>[] {
+    const { data } = await apiProductsService.get<IProduct>(`/search?input=${input}`);
+    // const { data } = await apiProductsService.get<IProduct>('/search', input);
+    return data;
+  }
 }
 
 export default ApiProduct;

@@ -19,4 +19,5 @@ export type StateProducts = {
   activeProduct: IProduct;
   error: string;
   isLoading: boolean;
+  foundProducts: IProduct[];
 };
