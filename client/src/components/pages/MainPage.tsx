@@ -4,7 +4,6 @@ import { useGetAllCategoriesQuery } from '../../store/categorySlise/category.ts'
 import Search from '../ui/Search';
 import Carousel from '../ui/Carousel';
 
-
 function MainPage(): JSX.Element {
   const { data, isLoading, error } = useGetAllCategoriesQuery('');
   const [state, setSatate] = useState(1);
