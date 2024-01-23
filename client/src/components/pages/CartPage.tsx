@@ -1,18 +1,10 @@
-import { DeleteForeverOutlined, Rectangle } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  Input,
-  InputBase,
-  List,
-  Typography,
-} from '@mui/material';
+import { DeleteForeverOutlined } from '@mui/icons-material';
+import { Box, Checkbox, List } from '@mui/material';
 import React from 'react';
 import CartItem from '../ui/CartItem';
 
 export default function CartPage(): JSX.Element {
+    
   return (
     <>
       <Box
@@ -30,9 +22,6 @@ export default function CartPage(): JSX.Element {
           <DeleteForeverOutlined />
         </Box>
       </List>
-      <CartItem />
-      <CartItem />
-
     </>
   );
 }

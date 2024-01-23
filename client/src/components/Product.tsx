@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { deleteOneProductThunk, getOneProductByIdThunk } from '../store/slice/ProductThunk';
 
 function Product(): JSX.Element {
+
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { activeProduct, error, isLoading } = useAppSelector((state) => state.productsState);
@@ -16,7 +17,6 @@ function Product(): JSX.Element {
       void dispatch(getOneProductByIdThunk(+id));
     }
   }, []);
-  console.log();
   return (
     <>
       {error && <h1>Sorry we have some problem!</h1>}
