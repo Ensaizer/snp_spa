@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {UserType} from "../../types/auth";
+import type {UserType} from "../../types/auth";
 
 // Define a service using a base URL and expected endpoints
 export const usersApi = createApi({
@@ -18,7 +18,7 @@ export const usersApi = createApi({
         deleteUser: builder.mutation<{ success: boolean; id: number }, number>({
             query(id) {
                 return {
-                    url: `users/${id}`,
+                    url: `/${id}`,
                     method: 'DELETE',
                 }
             },
@@ -27,7 +27,7 @@ export const usersApi = createApi({
             query(data) {
                 const { id, ...body } = data
                 return {
-                    url: `users/${id}`,
+                    url: `/${id}`,
                     method: 'PATCH',
                     body,
                 }
