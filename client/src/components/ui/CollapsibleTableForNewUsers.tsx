@@ -1,7 +1,7 @@
 import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Collapse from '@mui/material/Collapse';
-// import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -74,17 +74,15 @@ import type { UserType } from '../../types/auth';
 //   );
 // }
 
-export default function CollapsibleTable(): JSX.Element {
+export default function CollapsibleTableFrorNewUsers(): JSX.Element {
   const { data } = useGetAllUsersQuery('');
   const [deleteUserMutation] = useDeleteUserMutation();
-  const unApprovedUsers = data ? data.filter((user) => user.isApproved) : [];
-  // const [aya, setAya] = React.useState<UserType[]>(unApprovedUsers);
-  console.log(unApprovedUsers);
+  const unApprovedUsers = data ? data.filter((user) => !user.isApproved) : [];
+  const [aya, setAya] = React.useState<UserType[]>(unApprovedUsers);
   const deleteUserHandler = async (id: UserType['id']): Promise<void> => {
     await deleteUserMutation(id);
-    // setAya(aya.filter((user) => user.id !== id));
+    setAya(aya.filter((user) => user.id !== id));
   };
-
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -97,7 +95,7 @@ export default function CollapsibleTable(): JSX.Element {
           </TableRow>
         </TableHead>
         <TableBody>
-          {unApprovedUsers.map((user) => (
+          {aya.map((user) => (
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
               <TableCell component="th" scope="row">
                 {user.name}

@@ -1,17 +1,17 @@
 import { Button, Checkbox, Container, InputBase, Typography } from '@mui/material';
 import React from 'react';
 
-export default function CartItem(): JSX.Element {
+export default function CartItem({ item, inCheck }): JSX.Element {
   return (
     <Container sx={{ display: 'flex' }}>
       <Container sx={{ display: 'flex' }}>
-        <Checkbox />
+        <Checkbox checked/>
         <Container>
-          <Typography sx={{ fontSize: '16px', color: '#1B1D1F' }}>Bosch</Typography>
-          <Typography sx={{ fontSize: '16px', color: '#1B1D1F' }}>
-            Батарея аккумуляторная
+          <Typography sx={{ fontSize: '16px', color: '#1B1D1F' }}>{item.brand}</Typography>
+          <Typography sx={{ fontSize: '16px', color: '#1B1D1F' }}>{item.name}</Typography>
+          <Typography sx={{ fontSize: '16px', color: '#505255' }}>
+            Артикул: {item.article}
           </Typography>
-          <Typography sx={{ fontSize: '16px', color: '#505255' }}>Артикул: 0092S40890</Typography>
         </Container>
         <Container
           sx={{
@@ -21,7 +21,7 @@ export default function CartItem(): JSX.Element {
             display: 'flex',
           }}
         >
-          0 дней
+          {item.deliveryTime} дней
         </Container>
         <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div
@@ -39,7 +39,7 @@ export default function CartItem(): JSX.Element {
             <Button sx={{ margin: '0', padding: '0' }}>-</Button>
             <InputBase
               sx={{ width: '40px', margin: '0', padding: '0', textAlign: 'center' }}
-              placeholder="100"
+              placeholder={item.minOrder}
             />
             <Button sx={{ margin: '0', padding: '0' }}>+</Button>
           </div>
