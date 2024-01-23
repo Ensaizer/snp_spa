@@ -26,7 +26,7 @@ function MainPage(): JSX.Element {
       {error && <h2>Sorry we have some error: {error.message}</h2>}
       {data && (
         // <section className="categories">
-        <Paper sx={{display: 'flex', backgroundСolor: '#F0EFFA', overflow: 'hidden'}}>
+        <Paper elevation={16} sx={{display: 'flex', backgroundСolor: '#F0EFFA', overflow: 'hidden'}}>
           <ul className="categories__list">
             {data.map((el) => (
               <li className="categories__item" key={el.id} onClick={() => setSatate(el.id)}>
