@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MainPage() {
+function MainPage(): JSX.Element {
   return <div />;
 }
 

@@ -3,7 +3,7 @@ import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-function Product() {
+function Product(): JSX.Element {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia sx={{ height: 140 }} image="/vite.svg" title="green iguana" />
