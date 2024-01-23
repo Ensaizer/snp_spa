@@ -11,37 +11,36 @@ import EditProductPage from './components/pages/EditProductPage';
 import AdminPage from './components/pages/AdminPage';
 import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
-import Product from './components/Product';
 import PrivateRouter from './components/ui/PrivateRouterAuth';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <App/>,
     children: [
       {
         path: 'registration',
-        element: <PrivateRouter><RegistrationPage /></PrivateRouter>,
+        element: <PrivateRouter><RegistrationPage/></PrivateRouter>,
       },
       {
         path: 'products/:id',
-        element: <ProductPage />,
+        element: <ProductPage/>,
       },
       {
         path: 'products/:id/edit',
-        element: <EditProductPage />,
+        element: <EditProductPage/>,
       },
       {
         path: '/admin',
-        element: <AdminPage />,
+        element: <AdminPage/>,
       },
-        {
-          path: '/profile',
-          element: <ProfilePage/>,
-        },
+      {
+        path: '/profile',
+        element: <ProfilePage/>,
+      },
       {
         path: '/cart',
-        element: <CartPage />,
+        element: <CartPage/>,
       },
     ],
   },

@@ -21,7 +21,7 @@ userRouter.delete('/:id', async (req, res) =>{
         await User.destroy({where: {id}})
         res.status(200).json(id)
     } catch (e) {
-        res.status(500).json('User field')
+        res.status(500).json(e)
     }
 })
 
