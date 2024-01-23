@@ -16,11 +16,12 @@
 .categories__list{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     align-self: stretch;
     justify-content: space-evenly;
     list-style: none;
-    min-width: 500px;
-    background-color: #F8F7FC;
+    /* min-width: 500px; */
+    background-color: #F0EFFA;
 }
 .categories__item{
     width: 80%;

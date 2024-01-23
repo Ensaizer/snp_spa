@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slices/auth/authReducer';
+import authReducer from './slices/auth/authSlice';
 import productSlice from './slice/products';
-import {categoryApi} from "./categorySlise/category.ts";
+import { categoryApi } from './categorySlise/category.ts';
 
 export const store = configureStore({
   reducer: {
@@ -9,8 +9,7 @@ export const store = configureStore({
     productsState: productSlice,
     [categoryApi.reducerPath]: categoryApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(categoryApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(categoryApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

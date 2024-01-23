@@ -4,16 +4,7 @@ const { Product } = require("../../db/models");
 
 const productsRouter = express.Router();
 
-productsRouter.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const product = await Product.findOne({ where: { id: +id } });
-  res.status(200).json(product);
-});
 
-productsRouter.get("/", async (req, res) => {
-  const products = await Product.findAll();
-  return res.status(200).json(products);
-});
 
 productsRouter.post("/", async (req, res) => {
   const { body } = req;
@@ -37,14 +28,12 @@ productsRouter.patch("/:id", async (req, res) => {
 productsRouter.get('/search', async (req, res) => {
   try {
     const { input } = req.query;
-    console.log(input)
     const products = await Product.findAll({
       where: {article: {
-              [Op.iLike]: `%${String(input)}%`,
-            },
+                [Op.iLike]: `%${input}%`,
+              },
       },
     });
-    console.log(products)
     setTimeout(() => res.json(products), 1000);
   } catch (error) {
     console.log(error);
@@ -52,5 +41,14 @@ productsRouter.get('/search', async (req, res) => {
   }
 });
 
+productsRouter.get("/", async (req, res) => {
+  const products = await Product.findAll();
+  return res.status(200).json(products);
+});
+productsRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findOne({ where: { id: +id } });
+  res.status(200).json(product);
+});
 
 module.exports = productsRouter;

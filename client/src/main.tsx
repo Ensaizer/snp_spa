@@ -18,7 +18,7 @@ import CartPage from './components/pages/CartPage';
 
 import ProfilePage from './components/pages/ProfilePage';
 import Product from './components/Product';
-
+import PrivateRouter from './components/ui/PrivateRouterAuth';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'registration',
-        element: <RegistrationPage />,
+        element: <PrivateRouter><RegistrationPage /></PrivateRouter>,
       },
       {
         path: 'products/:id',
@@ -41,14 +41,10 @@ const router = createBrowserRouter([
         path: '/admin',
         element: <AdminPage />,
       },
-      //   {
-      //     path: '/login',
-      //     element: <Login />,
-      //   },
-      //   {
-      //     path: '/profile',
-      //     element: <Profile />,
-      //   },
+        {
+          path: '/profile',
+          element: <ProfilePage/>,
+        },
       {
         path: '/cart',
         element: <CartPage />,
