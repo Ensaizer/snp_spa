@@ -56,10 +56,12 @@ class AuthService {
 
   static async check(): Promise<AuthState> {
     const response = await authInstance.get<{ user: UserType; accessToken: string }>('/auth/check');
+    console.log(response)
     const authState: AuthState = {
       ...response.data,
       user: { ...response.data.user, status: 'authenticated' },
     };
+    console.log(authState)
     return authState;
   }
 }

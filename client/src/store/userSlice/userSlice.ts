@@ -5,9 +5,12 @@ import type {UserType} from "../../types/auth";
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/users' }),
+    tagTypes: ['Users'],
     endpoints: (builder) => ({
         getAllUsers: builder.query<UserType[], string>({
             query: () => `/`,
+            providesTags: (result) =>
+                result ? result.map(({ id }) => ({ type: 'Users', id } as const)) : [],
         }),
         getAllCustomers: builder.query<UserType[], string>({
             query: () => `/customers`,
@@ -15,23 +18,25 @@ export const usersApi = createApi({
         getAllPartners: builder.query<UserType[], string>({
             query: () => `/partners`,
         }),
-        deleteUser: builder.mutation<{ success: boolean; id: number }, number>({
+        deleteUser: builder.mutation<{ id: number }, { id: number }>({
             query(id) {
                 return {
-                    url: `/${id}`,
+                    url: `/${id.toString()}`,
                     method: 'DELETE',
                 }
             },
+            // invalidatesTags: (result, id) => [{ type: 'Users', id }],
+            invalidatesTags: ['Users']
         }),
-        updateUser: builder.mutation<UserType, Partial<UserType>>({
+        updateUser: builder.mutation<UserType, UserType>({
             query(data) {
-                const { id, ...body } = data
                 return {
-                    url: `/${id}`,
+                    url: `/${data.id.toString()}`,
                     method: 'PATCH',
-                    body,
+                    data,
                 }
             },
+            invalidatesTags: ['Users'],
         }),
     })
 });
