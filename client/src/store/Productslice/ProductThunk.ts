@@ -29,3 +29,7 @@ export const searchProductsByArticleThunk = createAsyncThunk(
   'product/searchProductsByArticleThunk',
   async (input: string) => ApiProduct.searchProducts(input),
 );
+
+export const getAllProduct = createAsyncThunk('product/getAllProduct', async () =>
+  ApiProduct.getAllProduct(),
+);

@@ -1,21 +1,10 @@
-import {
-  Autocomplete,
-  Box,
-  IconButton,
-  InputBase,
-  Link,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Box, InputBase, Link, List, ListItem, Paper, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { searchProductsByArticleThunk } from '../../store/slice/ProductThunk';
-import { resetFoundProducts } from '../../store/slice/products';
+import { searchProductsByArticleThunk } from '../../store/Productslice/ProductThunk';
+import { resetFoundProducts } from '../../store/Productslice/products';
 
 export default function Search(): JSX.Element {
   const { foundProducts, loading } = useAppSelector((state) => state.productsState);
@@ -68,9 +57,7 @@ export default function Search(): JSX.Element {
           inputProps={{ 'aria-label': 'search user by name' }}
           onChange={changeHandler}
         />
-        {/* <IconButton type="submit" sx={{ p: '10px' }} aria-label="search"> */}
-          <SearchIcon />
-        {/* </IconButton> */}
+        <SearchIcon />
         {!!foundProducts.length && (
           <Paper sx={{ position: 'absolute', top: '45px', left: 0, right: 0, zIndex: 1 }}>
             <List>

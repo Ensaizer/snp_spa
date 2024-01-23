@@ -1,18 +1,13 @@
-import { DeleteForeverOutlined, Rectangle } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  Input,
-  InputBase,
-  List,
-  Typography,
-} from '@mui/material';
-import React from 'react';
+import { DeleteForeverOutlined } from '@mui/icons-material';
+import { Box, Checkbox, List } from '@mui/material';
+import React, { useState } from 'react';
 import CartItem from '../ui/CartItem';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 export default function CartPage(): JSX.Element {
+const [deleteItems, setDeleteItems] = useState([]);
+  const { cartItems, deleteProducts } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
   return (
     <>
       <Box
@@ -29,10 +24,10 @@ export default function CartPage(): JSX.Element {
           Удалить все товары
           <DeleteForeverOutlined />
         </Box>
+        {cartItems.map((item) => (
+          <CartItem item={item} inCheck={deleteProducts.id} />
+        ))}
       </List>
-      <CartItem />
-      <CartItem />
-
     </>
   );
 }
