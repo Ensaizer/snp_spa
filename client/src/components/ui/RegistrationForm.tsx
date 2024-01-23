@@ -10,12 +10,14 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 import { useAppDispatch } from '../../store/hooks';
 import { registrationHandlerThunk } from '../../store/slices/auth/authThunks';
 
 export default function RegistrationForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const [type, setType] = useState('физическое лицо');
+  const navigate = useNavigate();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setType((event.target as HTMLInputElement).value);
   };
@@ -28,7 +30,7 @@ export default function RegistrationForm(): JSX.Element {
       <Box
         component="form"
         sx={{ minWidth: '400px' }}
-        onSubmit={(e) => void dispatch(registrationHandlerThunk(e))}
+        onSubmit={(e) => void dispatch(registrationHandlerThunk(e)).then(() => navigate('/'))}
       >
         <Box mb={1}>
           <FormControl fullWidth>
