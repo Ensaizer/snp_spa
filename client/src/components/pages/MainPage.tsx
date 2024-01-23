@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Container } from '@mui/material';
 import { useGetAllCategoriesQuery } from '../../store/categorySlise/category.ts';
 import Search from '../ui/Search';

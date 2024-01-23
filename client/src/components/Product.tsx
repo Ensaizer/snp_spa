@@ -16,7 +16,6 @@ function Product(): JSX.Element {
       void dispatch(getOneProductByIdThunk(+id));
     }
   }, []);
-  console.log();
   return (
     <>
       {error && <h1>Sorry we have some problem!</h1>}

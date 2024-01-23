@@ -4,6 +4,7 @@ import productSlice from './slice/products';
 import {categoryApi} from "./categorySlise/category.ts";
 import {usersApi} from "./userSlice/userSlice.ts";
 
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -13,6 +14,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(categoryApi.middleware, usersApi.middleware),
+
 });
 
 export type RootState = ReturnType<typeof store.getState>;
