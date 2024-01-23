@@ -21,13 +21,13 @@ export default function RegistrationForm(): JSX.Element {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '20px' }}>
       <Typography variant="h3" gutterBottom>
         Регистрация
       </Typography>
       <Box
         component="form"
-        sx={{ minWidth: '370px' }}
+        sx={{ minWidth: '400px' }}
         onSubmit={(e) => void dispatch(registrationHandlerThunk(e))}
       >
         <Box mb={1}>
@@ -96,7 +96,7 @@ export default function RegistrationForm(): JSX.Element {
                 <FormControlLabel value="2" control={<Radio />} label="Продавец" />
               </RadioGroup>
             </FormControl>
-            <Box mb={1} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Box mb={1} sx={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
               <TextField name="INN" label="ИНН" type="text" required />
               <TextField name="KPP" label="КПП" type="text" required />
             </Box>

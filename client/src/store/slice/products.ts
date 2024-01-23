@@ -3,12 +3,14 @@ import type { IProduct, StateProducts } from '../../types/ProductType';
 import {
   addOneProductThunk,
   getOneProductByIdThunk,
+  searchProductsByArticleThunk,
   updateOneProductByIdThunk,
 } from './ProductThunk';
 
 const initState: StateProducts = {
   products: [] as IProduct[],
   activeProduct: {} as IProduct,
+  foundProducts: [] as IProduct[],
   error: '',
   isLoading: false,
 };
@@ -54,6 +56,19 @@ const productSlice = createSlice({
     builder.addCase(updateOneProductByIdThunk.pending, (state) => {
       state.error = '';
       state.isLoading = true;
+    });
+    builder.addCase(searchProductsByArticleThunk.fulfilled, (state, action) => {
+      state.foundProducts = action.payload;
+      state.isLoading = false;
+      state.error = '';
+    });
+    builder.addCase(searchProductsByArticleThunk.pending, (state) => {
+      state.isLoading = true;
+      state.error = '';
+    });
+    builder.addCase(searchProductsByArticleThunk.rejected, (state, action) => {
+      state.error = action.error.message as string;
+      state.isLoading = false;
     });
   },
 });

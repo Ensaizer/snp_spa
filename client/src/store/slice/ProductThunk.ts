@@ -24,3 +24,8 @@ export const updateOneProductByIdThunk = createAsyncThunk(
     return data;
   },
 );
+
+export const searchProductsByArticleThunk = createAsyncThunk(
+  'product/searchProductsByArticleThunk',
+  async (input: string) => ApiProduct.searchProducts(input),
+);

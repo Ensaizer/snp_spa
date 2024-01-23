@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from '../Modal';
@@ -20,12 +21,14 @@ function NavBar(): JSX.Element {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
+      {/* <AppBar position="static" sx={{backgroundColor: '#F0EFFA', color: '#2F2B4A'}}> */}
         <Toolbar>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             SNP
+            <LocalShippingIcon sx={{verticalAlign: 'middle', width: '60px', height: '30px'}}/>
           </Typography>
           <Button color="inherit" component={NavLink} to="/">
             Главная

@@ -1,4 +1,5 @@
 const express = require("express");
+const { Op } = require("sequelize");
 const { Product } = require("../../db/models");
 
 const productsRouter = express.Router();
@@ -32,4 +33,24 @@ productsRouter.patch("/:id", async (req, res) => {
   const product = await Product.update(body, { where: { id } });
   return res.status(200).json(product);
 });
+
+productsRouter.get('/search', async (req, res) => {
+  try {
+    const { input } = req.query;
+    console.log(input)
+    const products = await Product.findAll({
+      where: {article: {
+              [Op.iLike]: `%${String(input)}%`,
+            },
+      },
+    });
+    console.log(products)
+    setTimeout(() => res.json(products), 1000);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
+
 module.exports = productsRouter;
