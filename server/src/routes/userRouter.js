@@ -1,11 +1,14 @@
 const express = require('express');
-const { User } = require('../../db/models');
+const { User, Organization } = require('../../db/models');
 
 const userRouter = express.Router();
 
 userRouter.get('/', async (req, res) =>{
     try{
-        const users = await User.findAll();
+        const users = await User.findAll({
+            include: Organization
+        });
+        
         res.status(200).json(users)
     } catch (e) {
         res.status(500).json('User field')

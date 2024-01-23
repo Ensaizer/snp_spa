@@ -65,6 +65,26 @@ module.exports = {
           return users
       }
       await queryInterface.bulkInsert('Users', await getUsers());
+      const organizations = [
+          {
+              userId: 3,
+              INN: '9604064697',
+              KPP: 'КПП36233401001',
+              OGRN: 'ОГРН 306360059589 23.12.2005',
+              corrAccount: '50902810716540010359',
+              legalAddress: 'Москва улю Сухарева 15',
+              currAccount: '60302810716540010359',
+          },
+          {   userId: 4,
+              INN: '9604064697',
+              KPP: 'КПП36233401001',
+              OGRN: 'ОГРН 306360059589 23.12.2005',
+              corrAccount: '50902810716540010359',
+              legalAddress: 'Санкт-Петербург ул. Печина 23',
+              currAccount: '60302810716540010359',
+          }
+      ]
+      await queryInterface.bulkInsert('Organizations', organizations);
       
       const brands = [
           {
@@ -106,46 +126,101 @@ module.exports = {
     ];
 
     await queryInterface.bulkInsert("Categories", categories);
-    await queryInterface.bulkInsert(
-      "Brands",
-      Array(1)
-        .fill("x")
-        .map(() => ({
-          name: "Product",
-          description: "Description",
-          logoPath: "kekke",
-        })),
-      {},
-    );
-
-    await queryInterface.bulkInsert(
-      "Roles",
-      Array(1)
-        .fill("x")
-        .map(() => ({
-          name: "customer",
-        })),
-      {},
-    );
-
-    await queryInterface.bulkInsert(
-      "Products",
-      Array(5)
-        .fill("x")
-        .map(() => ({
-          article: Math.random() * 100,
-          brandId: 1,
-          categoryId: 1,
-          deliveryTime: String(Math.floor(Math.random() * 10) + 1),
-          name: "Product",
-          description: "Description",
-          minOrder: Math.random() * 10,
-          multiplicity: Math.random() * 10,
-          stock: Math.random() * 100,
-          price: Math.random() * 1000,
-        })),
-      {},
-    );
+      
+      const products = [
+          {
+              article: 'TAD1343GE_ORG_',
+              brandId: 2,
+              categoryId: 1,
+              deliveryTime: 5,
+              name: 'Двигатеь',
+              description: 'Новый оригинал Дизельный двигатель Volvo Penta TAD1343GE (Вольво Пента TAD1343GE ) онлайн на snb2b.ru ',
+              price: 9930,
+              stock: 1,
+          },
+          {
+              article: 'TAD1342GE_ORG_',
+              brandId: 2,
+              categoryId: 1,
+              deliveryTime: 30,
+              name: 'Двигатель',
+              description: 'Новый оригинал Дизельный двигатель Volvo Penta TAD1342GE (Вольво Пента TAD1342GE) онлайн на snb2b.ru',
+              price: 70030,
+              stock: 2,
+          },
+          {
+              article: '20758814_OEM_',
+              brandId: 1,
+              categoryId: 2,
+              deliveryTime: 25,
+              name: 'Интеркуллер Радиатора',
+              description: 'Новый оригинал MAHLE CI354000P Charge air cooler онлайн на snb2b.ru ',
+              price: 77065,
+              stock: 3,
+          },
+          {
+              article: '21083292_OEM_',
+              brandId: 3,
+              categoryId: 2,
+              deliveryTime: 15,
+              name: 'Радиатор',
+              description: 'Новый 21229195 Radiator онлайн на snb2b.ru',
+              price: 9930,
+              stock: 6,
+          },
+          {
+              article: '21615193 _ORG_',
+              brandId: 3,
+              categoryId: 3,
+              deliveryTime: 10,
+              name: 'Корзина сцепления',
+              description: 'Новый оригинал Volvo Trucks 21615193 онлайн на snb2b.ru',
+              price: 76600,
+              stock: 100,
+          },
+          {
+              article: '82421049_SRP_',
+              brandId: 2,
+              categoryId: 3,
+              deliveryTime: 30,
+              name: 'Заглушка рамки фары левая',
+              description: 'Новый 82421049 онлайн на snb2b.ru',
+              price: 12000,
+              stock: 100,
+              
+          },
+      ];
+      await queryInterface.bulkInsert("Products", products);
+      
+      const carts = [
+          {
+              productId: 1,
+              quantity: 1,
+              userId: 4
+          },
+          {
+              productId: 2,
+              quantity: 1,
+              userId: 3
+          },
+          {
+              productId: 3,
+              quantity: 3,
+              userId: 2
+          },
+          {
+              productId: 4,
+              quantity: 2,
+              userId: 1
+          },
+          {
+              productId: 2,
+              quantity: 2,
+              userId: 4
+          }
+      ];
+      
+      await queryInterface.bulkInsert("Carts", carts);
   },
 
   async down(queryInterface) {

@@ -2,7 +2,7 @@ import {Autocomplete, Box, IconButton, InputBase, Paper, Typography } from '@mui
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { searchProductsByArticleThunk } from '../../store/slice/ProductThunk';
+import { searchProductsByArticleThunk } from '../../store/Productslice/ProductThunk';
 
 export default function Search(): JSX.Element {
   // const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ export default function Search(): JSX.Element {
   const changeHandler = (e:React.ChangeEvent<HTMLInputElement>):void => {
     setInputValue(e.target.value)
    };
-  
+
 
   // const searchData = async (search) => {
   //   setLoading(true);
