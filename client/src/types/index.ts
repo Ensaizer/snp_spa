@@ -7,7 +7,7 @@ export type OrganizationType = {
   orgName: string;
   INN: string;
   KPP: string;
-  ORGN: string;
+  OGRN: string;
   legalAddress: string;
   currAccount: string;
   corrAccount: string;
