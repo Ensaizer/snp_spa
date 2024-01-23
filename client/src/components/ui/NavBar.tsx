@@ -48,7 +48,7 @@ function NavBar(): JSX.Element {
               <Button color="inherit" component={NavLink} to="/profile">
                 Профиль
               </Button>
-              <Button color="inherit" component={NavLink} to="/basket">
+              <Button color="inherit" component={NavLink} to="/cart">
                 Корзина
               </Button>
               <Button
