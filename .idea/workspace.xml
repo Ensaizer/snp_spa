@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6b6dbfcc-048c-409e-8639-35776bfaf265" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/categorySlise/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/categorySlise/category.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/slice/products.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/slice/products.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/categoriesRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/categoriesRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +68,7 @@
       <recent name="C:\Users\92515\Desktop\Elbrus\snp_spa\client" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.db">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="db" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -97,9 +101,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.db" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.db" />
       </list>
     </recent_temporary>
   </component>
@@ -120,6 +124,7 @@
       <workItem from="1705923844118" duration="176000" />
       <workItem from="1705924056743" duration="985000" />
       <workItem from="1705925082584" duration="6458000" />
+      <workItem from="1705988658956" duration="2274000" />
     </task>
     <servers />
   </component>

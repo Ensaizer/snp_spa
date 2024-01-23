@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const productsRouter = require("./routes/productsRouter");
 const tokensRouter = require("./routes/tokensRouter");
 const authRouter = require("./routes/authRouter");
+const categoriesRouter = require("./routes/categoriesRouter");
 require("dotenv").config();
 
 const app = express();
@@ -14,13 +15,14 @@ app.use(
   cors({
     credentials: true,
     origin: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.use("/api/categories", categoriesRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/tokens", tokensRouter);
 app.use("/api/auth", authRouter);
