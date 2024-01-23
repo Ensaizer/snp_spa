@@ -18,7 +18,11 @@ const initState: StateProducts = {
 const productSlice = createSlice({
   name: 'products',
   initialState: initState,
-  reducers: {},
+  reducers: {
+    resetFoundProducts: (state) => {
+      state.foundProducts = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOneProductByIdThunk.fulfilled, (state, action) => {
       state.activeProduct = action.payload;
@@ -86,5 +90,7 @@ const productSlice = createSlice({
     });
   },
 });
+
+export const { resetFoundProducts } = productSlice.actions;
 
 export default productSlice.reducer;

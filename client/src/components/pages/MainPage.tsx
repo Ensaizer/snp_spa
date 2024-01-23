@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container } from '@mui/material';
+import { Container, Paper } from '@mui/material';
 import { useGetAllCategoriesQuery } from '../../store/categorySlise/category.ts';
 import Search from '../ui/Search';
 import Carousel from '../ui/Carousel';
@@ -20,12 +20,13 @@ function MainPage(): JSX.Element {
       <Search />
       <Container>
         <Carousel />
-      </Container>
+        {/* </Container> */}
 
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>Sorry we have some error: {error.message}</h2>}
       {data && (
-        <section className="categories">
+        // <section className="categories">
+        <Paper sx={{display: 'flex', backgroundСolor: '#F0EFFA', overflow: 'hidden'}}>
           <ul className="categories__list">
             {data.map((el) => (
               <li className="categories__item" key={el.id} onClick={() => setSatate(el.id)}>
@@ -35,13 +36,16 @@ function MainPage(): JSX.Element {
           </ul>
           {data.map((el) => (
             <img
+              key={el.id}
               src={`${el.id}.jpg`}
               alt="trucks"
               className={el.id === state ? 'categories__img active' : 'categories__img '}
             />
           ))}
-        </section>
+          </Paper>
+        // </section> 
       )}
+            </Container>
     </>
   );
 }

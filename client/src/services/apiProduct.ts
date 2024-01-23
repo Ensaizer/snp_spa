@@ -34,9 +34,8 @@ class ApiProduct {
     return data;
   }
 
-  static async searchProducts(input: string): Promise<IProduct>[] {
+  static async searchProducts(input:string): Promise<IProduct[]> {
     const { data } = await apiProductsService.get<IProduct[]>(`/search?input=${input}`);
-    // const { data } = await apiProductsService.get<IProduct>('/search', input);
     return data;
   }
 }
