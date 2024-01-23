@@ -1,37 +1,61 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
+    const categories = [
+      {
+        name: "Кузовные запчасти",
+      },
+      {
+        name: "Автомасла",
+      },
+      {
+        name: "Аккумуляторы",
+      },
+      {
+        name: "Неоригинальные запчасти",
+      },
+      {
+        name: "Запчасти для ТО",
+      },
+      {
+        name: "Автохимия",
+      },
+    ];
+
+    await queryInterface.bulkInsert("Categories", categories);
     await queryInterface.bulkInsert(
-      'Categories',
+      "Brands",
       Array(1)
-        .fill('x')
+        .fill("x")
         .map(() => ({
-          name: 'Volvo',
+          name: "Product",
+          description: "Description",
+          logoPath: "kekke",
         })),
       {},
     );
+
     await queryInterface.bulkInsert(
-      'Brands',
+      "Roles",
       Array(1)
-        .fill('x')
+        .fill("x")
         .map(() => ({
-          name: 'Product',
-          description: 'Description',
-          logoPath: 'kekke',
+          name: "customer",
         })),
       {},
     );
+
     await queryInterface.bulkInsert(
-      'Products',
+      "Products",
       Array(5)
-        .fill('x')
+        .fill("x")
         .map(() => ({
           article: Math.random() * 100,
           brandId: 1,
           categoryId: 1,
           deliveryTime: String(Math.floor(Math.random() * 10) + 1),
-          name: 'Product',
-          description: 'Description',
+          name: "Product",
+          description: "Description",
           minOrder: Math.random() * 10,
           multiplicity: Math.random() * 10,
           stock: Math.random() * 100,
@@ -42,6 +66,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete('Products', null, {});
+    await queryInterface.bulkDelete("Products", null, {});
   },
 };

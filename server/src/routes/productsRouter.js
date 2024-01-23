@@ -1,66 +1,56 @@
-const express = require('express');
-const { Product } = require('../../db/models');
+const express = require("express");
+const { Op } = require("sequelize");
+const { Product } = require("../../db/models");
 
 const productsRouter = express.Router();
 
-productsRouter
-  .route('/')
-  .get(async (req, res) => {
-    try {
-      const restaurants = await Product.findAll();
-      return res.json(restaurants);
-    } catch (error) {
-      return res.status(500).json(error);
-    }
-  })
-  .post(
-    /* upload.single('img'), */ async (req, res) => {
-      try {
-        if (!req.body?.name) return res.status(500).json({ message: 'Empty reqbody' });
-        const { name, description, img } = req.body;
-        const newRestaurant = await Product.create({
-          name,
-          description,
-          img,
-        });
-        return res.status(201).json(newRestaurant);
-      } catch (error) {
-        return res.status(500).json(error);
-      }
-    },
-  );
+productsRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findOne({ where: { id: +id } });
+  res.status(200).json(product);
+});
 
-productsRouter
-  .route('/:id')
-  .get(async (req, res) => {
-    try {
-      const restaurant = await Product.findByPk(req.params.id);
-      return res.json(restaurant);
-    } catch (error) {
-      return res.status(500).json(error);
-    }
-  })
-  .patch(async (req, res) => {
-    try {
-      if (!req.body?.name) return res.status(500).json({ message: 'Empty reqbody' });
-      const { name, description } = req.body;
+productsRouter.get("/", async (req, res) => {
+  const products = await Product.findAll();
+  return res.status(200).json(products);
+});
 
-      const restaurant = await Product.findByPk(req.params.id);
-      restaurant.name = name;
-      restaurant.description = description;
-      restaurant.save();
-      return res.status(200).json(restaurant);
-    } catch (error) {
-      return res.status(500).json(error);
-    }
-  })
-  .delete(async (req, res) => {
-    try {
-      await Product.destroy({ where: { id: req.params.id } });
-      return res.sendStatus(200);
-    } catch (error) {
-      return res.status(500).json(error);
-    }
-  });
+productsRouter.post("/", async (req, res) => {
+  const { body } = req;
+  const newProduct = await Product.create(body);
+  return res.status(200).json(newProduct);
+});
+
+productsRouter.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  await Product.destroy({ where: { id } });
+  return res.sendStatus(200);
+});
+
+productsRouter.patch("/:id", async (req, res) => {
+  const { body } = req;
+  const { id } = req.params;
+  const product = await Product.update(body, { where: { id } });
+  return res.status(200).json(product);
+});
+
+productsRouter.get('/search', async (req, res) => {
+  try {
+    const { input } = req.query;
+    console.log(input)
+    const products = await Product.findAll({
+      where: {article: {
+              [Op.iLike]: `%${String(input)}%`,
+            },
+      },
+    });
+    console.log(products)
+    setTimeout(() => res.json(products), 1000);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+});
+
 
 module.exports = productsRouter;
