@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { deleteOneProductThunk, getOneProductByIdThunk } from '../store/slice/ProductThunk';
+import { deleteOneProductThunk, getOneProductByIdThunk } from '../store/Productslice/ProductThunk';
 
 function Product(): JSX.Element {
   const { id } = useParams();
