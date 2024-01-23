@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { IProduct, StateProducts } from '../../types/ProductType';
 import {
   addOneProductThunk,
+  getAllProduct,
   getOneProductByIdThunk,
   searchProductsByArticleThunk,
   updateOneProductByIdThunk,
@@ -67,6 +68,19 @@ const productSlice = createSlice({
       state.error = '';
     });
     builder.addCase(searchProductsByArticleThunk.rejected, (state, action) => {
+      state.error = action.error.message as string;
+      state.isLoading = false;
+    });
+    builder.addCase(getAllProduct.fulfilled, (state, action) => {
+      state.products = action.payload;
+      state.isLoading = false;
+      state.error = '';
+    });
+    builder.addCase(getAllProduct.pending, (state) => {
+      state.isLoading = true;
+      state.error = '';
+    });
+    builder.addCase(getAllProduct.rejected, (state, action) => {
       state.error = action.error.message as string;
       state.isLoading = false;
     });

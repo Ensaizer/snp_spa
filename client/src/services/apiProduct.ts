@@ -15,8 +15,8 @@ class ApiProduct {
     return data;
   }
 
-  static async getAllProduct(): Promise<IProduct> {
-    const { data } = await apiProductsService.get<IProduct>(`/`);
+  static async getAllProduct(): Promise<IProduct[]> {
+    const { data } = await apiProductsService.get<IProduct[]>(`/`);
     return data;
   }
 
@@ -35,7 +35,7 @@ class ApiProduct {
   }
 
   static async searchProducts(input: string): Promise<IProduct>[] {
-    const { data } = await apiProductsService.get<IProduct>(`/search?input=${input}`);
+    const { data } = await apiProductsService.get<IProduct[]>(`/search?input=${input}`);
     // const { data } = await apiProductsService.get<IProduct>('/search', input);
     return data;
   }
