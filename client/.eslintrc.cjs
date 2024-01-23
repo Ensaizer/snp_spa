@@ -29,6 +29,7 @@ module.exports = {
     'react/require-default-props': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     'consistent-return': 'off',
+    'import/extensions': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],

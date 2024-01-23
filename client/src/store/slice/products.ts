@@ -33,7 +33,7 @@ const productSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(addOneProductThunk.fulfilled, (state, action) => {
-      state.products = state.products.unshift(action.payload);
+      state.products.unshift(action.payload);
       state.isLoading = false;
       state.error = '';
     });

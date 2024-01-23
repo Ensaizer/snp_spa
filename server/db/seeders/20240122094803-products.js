@@ -1,15 +1,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
-    await queryInterface.bulkInsert(
-      "Categories",
-      Array(1)
-        .fill("x")
-        .map(() => ({
-          name: "Volvo",
-        })),
-      {},
-    );
+    const categories = [
+      {
+        name: "Кузовные запчасти",
+      },
+      {
+        name: "Автомасла",
+      },
+      {
+        name: "Аккумуляторы",
+      },
+      {
+        name: "Неоригинальные запчасти",
+      },
+      {
+        name: "Запчасти для ТО",
+      },
+      {
+        name: "Автохимия",
+      },
+    ];
+
+    await queryInterface.bulkInsert("Categories", categories);
     await queryInterface.bulkInsert(
       "Brands",
       Array(1)
