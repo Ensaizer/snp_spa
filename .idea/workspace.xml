@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/routes/userRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/pages/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/MainPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ui/RegistrationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/RegistrationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/categoriesRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/categoriesRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +104,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705992943249</updated>
-      <workItem from="1705992946536" duration="6962000" />
+      <workItem from="1705992946536" duration="9765000" />
     </task>
     <servers />
   </component>
