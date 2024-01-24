@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Button } from '@mui/material';
+import { Button, Input, TextField } from '@mui/material';
 import type { UserType } from '../../types/auth';
 import {
   useDeleteUserMutation,
@@ -20,17 +20,14 @@ import {
   useUpdateUserMutation,
 } from '../../store/userSlice/userSlice';
 
-type ApprovedHandleType = {
-  id: number;
-  isApproved: boolean;
-};
 function Row(props: {
   user: UserType;
   deleteUserHandler: (id: number) => void;
-  approvedUserHandler: ({ isApproved }: ApprovedHandleType) => void;
+  updateDiscountHandler;
 }): JSX.Element {
-  const { user, deleteUserHandler, approvedUserHandler } = props;
+  const { user, deleteUserHandler, updateDiscountHandler } = props;
   const [open, setOpen] = React.useState(false);
+  const [discount, setDiscount] = React.useState(user.discount);
 
   return (
     <>
@@ -42,21 +39,41 @@ function Row(props: {
             </IconButton>
           ) : null}
         </TableCell>
-        <TableCell component="th" scope="row">
-          {user.name}
-        </TableCell>
+        <TableCell>{user.name}</TableCell>
         <TableCell align="center">{user.email}</TableCell>
         <TableCell align="center">{user.phone}</TableCell>
         <TableCell align="center">{user.userType}</TableCell>
         <TableCell align="center">
+          <TextField
+            name="discount"
+            type="number"
+            InputProps={{
+              inputProps: {
+                max: 100,
+                min: 0,
+                defaultValue: discount,
+              },
+            }}
+            label="от 0 до 100"
+            onChange={(e) => setDiscount(Number(e.target.value))}
+          />
+        </TableCell>
+        <TableCell align="center" sx={{ display: 'flex', flexDirection: 'column' }}>
           <Button
             type="button"
-            onClick={() => void approvedUserHandler({ id: user.id, isApproved: !user.isApproved })}
+            onClick={() => void deleteUserHandler(user.id)}
+            sx={{ fontSize: '10px' }}
           >
-            Подтвердить
+            Удалить пользователя
           </Button>
-          <Button type="button" onClick={() => void deleteUserHandler(user.id)}>
-            Отказать
+          <Button
+            type="button"
+            onClick={() =>
+              void updateDiscountHandler({ id: user.id, discount, isApproved: user.isApproved })
+            }
+            sx={{ fontSize: '10px' }}
+          >
+            Назначить скидку
           </Button>
         </TableCell>
       </TableRow>
@@ -104,17 +121,18 @@ function Row(props: {
 }
 
 export default function CollapsibleTableForUsers(): JSX.Element {
-  const { data, isLoading } = useGetAllUsersQuery('');
+  const { data } = useGetAllUsersQuery('');
   const [deleteUserMutation] = useDeleteUserMutation();
   const [updateUserMutation] = useUpdateUserMutation();
-  const unApprovedUsers = data ? data.filter((user) => !user.isApproved) : [];
+  const approvedUsers = data ? data.filter((user) => user.isApproved) : [];
   const deleteUserHandler = async (id: UserType['id']): Promise<void> => {
     await deleteUserMutation({ id });
   };
-  const approvedUserHandler = async (isApproved: boolean): Promise<void> => {
+  const updateDiscountHandler = async (isApproved): Promise<void> => {
+    console.log(isApproved.id, isApproved.discount, isApproved.isApproved);
     await updateUserMutation({ isApproved });
   };
-  return unApprovedUsers.length !== 0 ? (
+  return approvedUsers.length !== 0 ? (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
@@ -124,21 +142,22 @@ export default function CollapsibleTableForUsers(): JSX.Element {
             <TableCell align="center">Email</TableCell>
             <TableCell align="center">Телефон</TableCell>
             <TableCell align="center">Тип</TableCell>
+            <TableCell align="center">Скидка</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {unApprovedUsers.map((user) => (
+          {approvedUsers.map((user) => (
             <Row
               key={user.id}
               user={user}
               deleteUserHandler={deleteUserHandler}
-              approvedUserHandler={approvedUserHandler}
+              updateDiscountHandler={updateDiscountHandler}
             />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   ) : (
-    <Typography>Нет новых пользователей</Typography>
+    <Typography>Нет пользователей</Typography>
   );
 }

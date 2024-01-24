@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Outlet, useLocation } from 'react-router-dom';
 import type { AxiosError } from 'axios';
+import { Box } from '@mui/material';
 import NavBar from './components/ui/NavBar';
 import './index.css';
 import MainPage from './components/pages/MainPage';
@@ -9,6 +10,7 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 import { refreshThunk, userCheckThunk } from './store/slices/auth/authThunks';
 import { apiProductsService } from './services/apiProduct';
 import Loader from './components/ui/Loader';
+import Footer from './components/ui/Footer';
 
 function App(): JSX.Element {
   const { pathname } = useLocation();
@@ -63,14 +65,17 @@ function App(): JSX.Element {
       apiProductsService.interceptors.request.eject(requestInterceptor);
       apiProductsService.interceptors.response.eject(responseInterceptor);
     };
-  }, [auth.accessToken]);
+  }, [auth.accessToken, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
       <Loader isLoading={auth.user.status === 'pending'}>
         <>
-        <NavBar />
-        {pathname === '/' ? <MainPage /> : <Outlet />}
+          <Box sx={{ marginBottom: '20px' }}>
+            <NavBar />
+            {pathname === '/' ? <MainPage /> : <Outlet />}
+          </Box>
+          <Footer />
         </>
       </Loader>
     </ThemeProvider>

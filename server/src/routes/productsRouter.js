@@ -34,7 +34,7 @@ productsRouter.get('/search', async (req, res) => {
               },
       },
     });
-    setTimeout(() => res.json(products), 1000);
+    setTimeout(() => res.json(products), 500);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);

@@ -12,11 +12,13 @@ import AdminPage from './components/pages/AdminPage';
 import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
 import PrivateRouter from './components/ui/PrivateRouterAuth';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
+    element: <App />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: 'registration',
