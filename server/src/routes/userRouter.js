@@ -3,6 +3,7 @@ const { User, Organization } = require('../../db/models');
 
 const userRouter = express.Router();
 
+
 userRouter.get('/', async (req, res) =>{
     try{
         const users = await User.findAll({
@@ -21,7 +22,7 @@ userRouter.delete('/:id', async (req, res) =>{
         await User.destroy({where: {id}})
         res.status(200).json(id)
     } catch (e) {
-        res.status(500).json('User field')
+        res.status(500).json(e)
     }
 })
 

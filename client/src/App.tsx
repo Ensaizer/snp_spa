@@ -66,7 +66,7 @@ function App(): JSX.Element {
       apiProductsService.interceptors.request.eject(requestInterceptor);
       apiProductsService.interceptors.response.eject(responseInterceptor);
     };
-  }, [auth.accessToken]);
+  }, [auth.accessToken, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
