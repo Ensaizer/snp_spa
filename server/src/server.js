@@ -7,7 +7,7 @@ const tokensRouter = require("./routes/tokensRouter");
 const authRouter = require("./routes/authRouter");
 const categoriesRouter = require("./routes/categoriesRouter");
 const userRouter = require("./routes/userRouter");
-const cartRouter = require("./routes/cartUser");
+const cartRouter = require("./routes/cartRouter");
 require("dotenv").config();
 
 const app = express();
