@@ -29,11 +29,12 @@ export const usersApi = createApi({
       invalidatesTags: ['Users'],
     }),
     updateUser: builder.mutation<UserType, UserType>({
-      query(data) {
+      query({ isApproved }) {
+        console.log(isApproved);
         return {
-          url: `/${data.id.toString()}`,
+          url: `/${isApproved.id.toString()}`,
           method: 'PATCH',
-          data,
+          body: isApproved,
         };
       },
       invalidatesTags: ['Users'],
