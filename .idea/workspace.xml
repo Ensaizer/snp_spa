@@ -7,11 +7,9 @@
     <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/pages/MainPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/MainPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/migrations/20240122064719-create-organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/migrations/20240122064719-create-organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,9 +95,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.db" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
       </list>
@@ -114,6 +112,8 @@
       <option name="presentableId" value="Default" />
       <updated>1705992943249</updated>
       <workItem from="1705992946536" duration="9765000" />
+      <workItem from="1706074750908" duration="21467000" />
+      <workItem from="1706098247576" duration="2154000" />
     </task>
     <servers />
   </component>
