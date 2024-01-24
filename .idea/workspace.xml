@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/routes/cartRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/authService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/cartSlice/cartSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/cartSlice/cartSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/cartSlice/cartThunks.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/cartUser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
-    </list>
+    <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,5 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added cart" />
+    <option name="LAST_COMMIT_MESSAGE" value="added cart" />
   </component>
 </project>
