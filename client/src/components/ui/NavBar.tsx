@@ -12,10 +12,11 @@ import { useState } from 'react';
 import Modal from '../Modal';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logoutHandlerThunk } from '../../store/slices/auth/authThunks';
+import { clearError, setModal } from '../../store/slices/auth/authSlice';
 
 function NavBar(): JSX.Element {
   const [open, setOpen] = useState(false);
-  const { user } = useAppSelector((state) => state.auth);
+  const { user, modal } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
   return (
@@ -35,7 +36,7 @@ function NavBar(): JSX.Element {
           </Button>
           {user.status !== 'authenticated' && (
             <>
-              <Button color="inherit" onClick={() => setOpen(true)}>
+              <Button color="inherit" onClick={() => dispatch(setModal())}>
                 Войти
               </Button>
               <Button color="inherit" component={NavLink} to="/registration">
@@ -61,7 +62,10 @@ function NavBar(): JSX.Element {
               </Button>
             </>
           )}
-          <Modal open={open} handleClose={() => setOpen(false)} />
+          <Modal open={modal} handleClose={() => {
+            dispatch(setModal());
+            dispatch(clearError())
+          }}/>
         </Toolbar>
       </AppBar>
     </Box>

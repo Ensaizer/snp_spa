@@ -1,7 +1,7 @@
 import AuthService from '../../../services/authService';
 import type { AuthState, LoginFormData, RegistrationFormData } from '../../../types/auth';
 import type { AppDispatch } from '../../store';
-import { login, logout, refresh } from './authSlice';
+import { clearError, login, logout, refresh, setError, setModal } from './authSlice';
 
 export const loginHandlerThunk =
   (e: React.FormEvent<HTMLFormElement>) =>
@@ -13,8 +13,11 @@ export const loginHandlerThunk =
       ) as unknown as LoginFormData;
       const authState = await AuthService.login(formData);
       dispatch(login(authState));
+      dispatch(setModal());
+      dispatch(clearError());
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data.message);
+      dispatch(setError(err.response.data.message));
       dispatch(logout());
     }
   };

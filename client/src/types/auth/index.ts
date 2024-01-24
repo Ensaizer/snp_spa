@@ -29,6 +29,8 @@ export type UserState =
 export type AuthState = {
   user: UserState;
   accessToken: string;
+  error: string;
+  modal: boolean;
 };
 
 export type AuthActions =
