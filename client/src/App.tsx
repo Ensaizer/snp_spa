@@ -33,7 +33,6 @@ function App(): JSX.Element {
   useEffect(() => {
     void dispatch(userCheckThunk());
   }, [dispatch]);
-  console.log(auth);
 
   useEffect(() => {
     const requestInterceptor = apiProductsService.interceptors.request.use(
