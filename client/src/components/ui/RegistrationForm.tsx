@@ -10,14 +10,14 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
 import { useAppDispatch } from '../../store/hooks';
 import { registrationHandlerThunk } from '../../store/slices/auth/authThunks';
+import RegistraionModal from './RegistrationModal';
 
 export default function RegistrationForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const [type, setType] = useState('физическое лицо');
-  const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setType((event.target as HTMLInputElement).value);
   };
@@ -30,7 +30,7 @@ export default function RegistrationForm(): JSX.Element {
       <Box
         component="form"
         sx={{ minWidth: '400px' }}
-        onSubmit={(e) => void dispatch(registrationHandlerThunk(e)).then(() => navigate('/'))}
+        onSubmit={(e) => void dispatch(registrationHandlerThunk(e)).then(() => setModalOpen(true))}
       >
         <Box mb={1}>
           <FormControl fullWidth>
@@ -91,8 +91,6 @@ export default function RegistrationForm(): JSX.Element {
                 sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}
                 aria-labelledby="userType-radio-buttons-group"
                 name="roleId"
-                // value={value}
-                // onChange={handleChange}
               >
                 <FormControlLabel value="1" control={<Radio />} label="Покупатель" />
                 <FormControlLabel value="2" control={<Radio />} label="Продавец" />
@@ -132,6 +130,7 @@ export default function RegistrationForm(): JSX.Element {
           Зарегистрироваться
         </Button>
       </Box>
+      <RegistraionModal modalOpen={modalOpen} setModalOpen={setModalOpen}/>
     </Box>
   );
 }
