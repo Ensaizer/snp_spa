@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/components/pages/OrderForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/store/orderSlice/orderSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/routes/orderRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/seeders/20240122094803-products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,13 +27,14 @@
       <list>
         <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fixUserRoute" />
+        <entry key="$PROJECT_DIR$" value="button" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -95,10 +102,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.db" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="npm.db" />
+        <item itemvalue="npm.db" />
         <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>

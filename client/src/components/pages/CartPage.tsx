@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {useAppSelector} from "../../store/hooks";
 import {useDeleteAllCartsMutation, useGetOneCartByIdQuery} from "../../store/cartSlice/cartSlice";
 import CartItem from "../ui/CartItem.tsx";
+import {Link} from "react-router-dom";
 
 
 export default function CartPage(): JSX.Element {
@@ -11,16 +12,27 @@ export default function CartPage(): JSX.Element {
     const { data, isLoading } = useGetOneCartByIdQuery(user.id);
     const [deleteAll] = useDeleteAllCartsMutation()
     const [checked, setChecked] = useState<number[]>([]);
-    const [sum, setSum] = useState([0]);
+    const [sum, setSum] = useState(0);
 
     useEffect(() =>{
         if(data){
-            const array = data.map(item => item.id);
-            setChecked(array)
             const amount = data.reduce((acc, item) =>  acc += item.Product.price * item.quantity, 0);
             setSum(amount)
         }
     }, [data]);
+
+    const handleClick = () => {
+        const order = {
+            userId: user.id,
+            status: 'в обработке',
+            deliveryAddress: user.deliveryAddress,
+            deliveryType: 'самовывоз',
+            paymentType: 'онлайн'
+        }
+
+    }
+
+    console.log(user)
 
   return (
     <>
@@ -42,7 +54,7 @@ export default function CartPage(): JSX.Element {
               padding: '20px'
           }}>
               <Box>
-                  <Checkbox defaultChecked onChange={() => setChecked((prev) => {
+                  <Checkbox onChange={() => setChecked((prev) => {
                       if(data && prev.length === 0){
                           return data.map(item => item.id)
                       }
@@ -74,7 +86,14 @@ export default function CartPage(): JSX.Element {
             marginTop: '30px'
         }}>Общая сумма заказа: {sum} рублей</Box>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px'}}>
-              <Button variant="contained" color="secondary" sx={{minWidth: '300px', }}>ЗАКАЗАТЬ</Button>
+              <Button
+                  component={Link}
+                  to='/order'
+                  variant="contained"
+                  color="secondary"
+                  sx={{minWidth: '300px'}}
+                  onClick={() =>handleClick()}
+              >ЗАКАЗАТЬ</Button>
           </div>
 
       </List>
