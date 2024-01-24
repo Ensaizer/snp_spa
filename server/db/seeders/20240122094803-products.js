@@ -146,7 +146,9 @@ module.exports = {
         description:
           'Новый оригинал Дизельный двигатель Volvo Penta TAD1343GE (Вольво Пента TAD1343GE ) онлайн на snb2b.ru ',
         price: 9930,
-        stock: 1,
+        stock: 10,
+        minOrder: 1,
+        multiplicity: 3
       },
       {
         article: 'TAD1342GE_ORG_',
@@ -157,7 +159,10 @@ module.exports = {
         description:
           'Новый оригинал Дизельный двигатель Volvo Penta TAD1342GE (Вольво Пента TAD1342GE) онлайн на snb2b.ru',
         price: 70030,
-        stock: 2,
+        stock: 20,
+        minOrder: 1,
+        multiplicity: 1
+        
       },
       {
         article: '20758814_OEM_',
@@ -167,7 +172,9 @@ module.exports = {
         name: 'Интеркуллер Радиатора',
         description: 'Новый оригинал MAHLE CI354000P Charge air cooler онлайн на snb2b.ru ',
         price: 77065,
-        stock: 3,
+        stock: 65,
+        minOrder: 1,
+        multiplicity: 2
       },
       {
         article: '21083292_OEM_',
@@ -177,7 +184,9 @@ module.exports = {
         name: 'Радиатор',
         description: 'Новый 21229195 Radiator онлайн на snb2b.ru',
         price: 9930,
-        stock: 6,
+        stock: 39,
+        minOrder: 1,
+        multiplicity: 2
       },
       {
         article: '21615193 _ORG_',
@@ -188,6 +197,8 @@ module.exports = {
         description: 'Новый оригинал Volvo Trucks 21615193 онлайн на snb2b.ru',
         price: 76600,
         stock: 100,
+        minOrder: 1,
+        multiplicity: 3
       },
       {
         article: '82421049_SRP_',
@@ -197,7 +208,9 @@ module.exports = {
         name: 'Заглушка рамки фары левая',
         description: 'Новый 82421049 онлайн на snb2b.ru',
         price: 12000,
-        stock: 100,
+        stock: 50,
+        minOrder: 1,
+        multiplicity: 5
       },
     ];
     await queryInterface.bulkInsert('Products', products);
@@ -206,17 +219,17 @@ module.exports = {
       {
         productId: 1,
         quantity: 1,
-        userId: 4,
+        userId: 1,
       },
       {
-        productId: 2,
+        productId: 5,
         quantity: 1,
-        userId: 3,
+        userId: 1,
       },
       {
         productId: 3,
         quantity: 3,
-        userId: 2,
+        userId: 1,
       },
       {
         productId: 4,
@@ -226,7 +239,7 @@ module.exports = {
       {
         productId: 2,
         quantity: 2,
-        userId: 4,
+        userId: 1,
       },
     ];
 

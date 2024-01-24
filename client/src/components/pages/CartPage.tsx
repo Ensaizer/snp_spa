@@ -21,8 +21,7 @@ export default function CartPage(): JSX.Element {
             setSum(amount)
         }
     }, [data]);
-    console.log(data)
-    console.log(checked)
+
   return (
     <>
         {isLoading && <h1>Идет загрузка...</h1>}
@@ -74,6 +73,10 @@ export default function CartPage(): JSX.Element {
             justifyContent: 'center',
             marginTop: '30px'
         }}>Общая сумма заказа: {sum} рублей</Box>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px'}}>
+              <Button variant="contained" color="secondary" sx={{minWidth: '300px', }}>ЗАКАЗАТЬ</Button>
+          </div>
+
       </List>
     </>
   );
