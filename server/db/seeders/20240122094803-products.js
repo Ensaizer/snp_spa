@@ -51,7 +51,7 @@ module.exports = {
           deliveryAddress: 'Москва ул. Строителей д.46 кв 56',
           discount: 0,
           roleId: 2,
-          isApproved: true,
+          isApproved: false,
         },
         {
           name: 'Анатолий',
@@ -62,7 +62,7 @@ module.exports = {
           deliveryAddress: 'Москва ул. Строителей д.46 кв 56',
           discount: 0,
           roleId: 1,
-          isApproved: true,
+          isApproved: false,
         },
       ];
       return users;
