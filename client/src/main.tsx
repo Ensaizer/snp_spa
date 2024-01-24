@@ -13,15 +13,21 @@ import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
 import Product from './components/Product';
 import PrivateRouter from './components/ui/PrivateRouterAuth';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: 'registration',
-        element: <PrivateRouter><RegistrationPage /></PrivateRouter>,
+        element: (
+          <PrivateRouter>
+            <RegistrationPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: 'products/:id',
@@ -35,10 +41,10 @@ const router = createBrowserRouter([
         path: '/admin',
         element: <AdminPage />,
       },
-        {
-          path: '/profile',
-          element: <ProfilePage/>,
-        },
+      {
+        path: '/profile',
+        element: <ProfilePage />,
+      },
       {
         path: '/cart',
         element: <CartPage />,
