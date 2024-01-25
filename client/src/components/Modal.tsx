@@ -1,7 +1,8 @@
-import { Box, Typography, Modal as ModalMUI, Button, TextField } from '@mui/material';
+import { Box, Typography, Modal as ModalMUI, Button, TextField, Paper } from '@mui/material';
 import React from 'react';
-import { useAppDispatch } from '../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { loginHandlerThunk } from '../store/slices/auth/authThunks';
+import { clearError } from '../store/slices/auth/authSlice';
 
 const style = {
   position: 'absolute',
@@ -9,8 +10,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
-  // border: '2px solid #fff',
-  boxShadow: 24,
+  minWidth: '300px',
   textAlign: 'center',
   p: 4,
 };
@@ -21,6 +21,8 @@ type ModalProps = {
 };
 
 export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
+  const { error } = useAppSelector((state) => state.auth);
+  console.log(error);
   const dispatch = useAppDispatch();
   return (
     <ModalMUI
@@ -29,7 +31,7 @@ export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Paper sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
           Войти
         </Typography>
@@ -37,20 +39,27 @@ export default function Modal({ open, handleClose }: ModalProps): JSX.Element {
           component="form"
           onSubmit={(e) => {
             void dispatch(loginHandlerThunk(e));
-            handleClose();
           }}
         >
           <Box mb={2}>
-            <TextField name="email" label="Электронная почта" type="email" required />
+            <TextField name="email" label="Электронная почта" type="email" required onChange={()=>dispatch(clearError())}/>
           </Box>
           <Box mb={2}>
-            <TextField name="password" label="Пароль" type="password" required />
+            <TextField name="password" label="Пароль" type="password" required onChange={()=>dispatch(clearError())}/>
           </Box>
+          {error && (
+            <Typography
+              variant="body1"
+              sx={{ color: '#FB6019', marginBottom: '10px', marginTop: '5px' }}
+            >
+              {error}
+            </Typography>
+          )}
           <Button type="submit" variant="contained">
             Войти
           </Button>
         </Box>
-      </Box>
+      </Paper>
     </ModalMUI>
   );
 }

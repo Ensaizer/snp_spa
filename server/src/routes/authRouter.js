@@ -42,12 +42,12 @@ authRouter.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) return res.status(404).json({ message: 'Неверное имя пользователя или пароль' });
 
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return res.status(400).json({ message: 'Invalid password' });
+    if (!isValid) return res.status(400).json({ message: 'Неверное имя пользователя или пароль' });
 
-    if (!user.isApproved) return res.status(400).json({ message: 'User is not approved' });
+    if (!user.isApproved) return res.status(400).json({ message: 'Ваша учетная запись еще не подтверждена. Пожалуйста ожидайте.' });
     const plainUser = user.get();
     delete plainUser.password;
     const { accessToken, refreshToken } = generateTokens({
