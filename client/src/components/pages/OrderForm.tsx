@@ -14,13 +14,14 @@ import {useAppSelector} from "../../store/hooks.ts";
 import {useCreateNewOrderMutation} from "../../store/orderSlice/orderSlice";
 import type {OrderFormType} from "../../types";
 import ModalOrder from "./ModalOrder.tsx";
+import {useDeleteAllCartsMutation} from "../../store/cartSlice/cartSlice.ts";
 
 
 const OrderForm:FC = () => {
     const [open, setModalOpen] = useState(false)
     const {user} = useAppSelector(state=>state.auth);
     const [create] = useCreateNewOrderMutation();
-
+    const [deleteAll] = useDeleteAllCartsMutation()
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '20px' }}>
             <Typography variant="h3" gutterBottom>
@@ -34,7 +35,8 @@ const OrderForm:FC = () => {
                     const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as OrderFormType
                     formData.userId = user.id;
                     formData.status = 'в обработке';
-                    setModalOpen(true)
+                    setModalOpen(true);
+                    void deleteAll([user.id]);
                     void create(formData);
                 }}
             >

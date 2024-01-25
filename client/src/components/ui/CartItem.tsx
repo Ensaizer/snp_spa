@@ -28,7 +28,7 @@ export default function CartItem({ item, setChecked, setSum, checked}: CartItemP
         quantity,
         sum: price * quantity
     })
-    console.log(state, multiplicity)
+
     const decrementClickHandle = () => {
         if (state.quantity > minOrder){
             setState((prev)=> ({

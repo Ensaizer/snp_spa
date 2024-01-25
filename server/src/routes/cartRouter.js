@@ -53,8 +53,8 @@ cartRouter.get("/:id", async (req, res) => {
 cartRouter.post("/", async (req, res) => {
     try{
         const { body } = req;
-        await Cart.create(body);
-        res.sendStatus(200);
+        const result = await Cart.create(body);
+        res.status(200).json(result.id);
     } catch (e) {
         res.status(500).json(e)
     }
