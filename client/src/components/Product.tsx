@@ -16,7 +16,6 @@ function Product(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
   const { activeProduct, error, isLoading } = useAppSelector((state) => state.productsState);
   const [quantity, setQuantity] = useState(0);
-
   const decrementClickHandle = (): void => {
     if (quantity > activeProduct.minOrder) setQuantity((prev) => prev - activeProduct.multiplicity);
   };
@@ -47,9 +46,9 @@ function Product(): JSX.Element {
       {!isLoading && !error && (
         <Container
           maxWidth="md"
-          sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' , gap: '80px'}}
+          sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px', gap: '80px' }}
         >
-          <Grid container spacing={2} sx={{alignContent: 'flex-start'}}>
+          <Grid container spacing={2} sx={{ alignContent: 'flex-start' }}>
             <Grid item xs={4}>
               <Typography variant="h5" color="primary">
                 Бренд
@@ -83,7 +82,7 @@ function Product(): JSX.Element {
               <Typography variant="h6">{activeProduct.description}</Typography>
             </Grid>
           </Grid>
-          <Box >
+          <Box>
             <Box>
               <Box sx={{ display: 'flex', gap: '10px' }} mb={2}>
                 <Typography variant="h5" color="primary">
@@ -147,8 +146,8 @@ function Product(): JSX.Element {
               color="secondary"
               type="button"
               id="addtocart-button"
-              disabled={!quantity}
-              onClick={():void => clickCreateCartHandler()}
+              disabled={!quantity || !user.isApproved}
+              onClick={(): void => clickCreateCartHandler()}
             >
               Добавить в корзину
               <AddShoppingCartIcon sx={{ marginLeft: '10px' }} />

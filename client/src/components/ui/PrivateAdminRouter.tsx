@@ -7,11 +7,11 @@ type PrivateRouterProps = {
   redirectPath?: string;
 };
 
-export default function PrivateRouterAuth({
+export default function PrivateAdminRouter({
   children,
   redirectPath = '/',
 }: PrivateRouterProps): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
-  if (user.status === 'authenticated') return <Navigate to={redirectPath} />;
+  if (user.roleId !== 3) return <Navigate to={redirectPath} />;
   return children || <Outlet />;
 }
