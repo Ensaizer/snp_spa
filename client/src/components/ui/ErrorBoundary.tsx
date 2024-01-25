@@ -11,11 +11,11 @@ export default function ErrorBoundary(): JSX.Element {
         alignItems: 'center',
       }}
     >
-      <img alt="404 error" src="/404.jpg" />
-      <Typography variant="h1" component="h1" mb={4} mt={5}>
+      <img alt="404 error" src="/pngwing.com.png" width="1000" />
+      <Typography variant="h2" component="h1" mb={4} >
         Упс! 404.
       </Typography>
-      <Typography variant="h4" component="h2" sx={{textAlign: 'center'}}>
+      <Typography variant="h5" component="h2" sx={{ textAlign: 'center' }}>
         Кажется что-то пошло не так. Страница, которую вы запрашиваете не существует.
         <br />
         Возможно она устарела, была удалена, или был введён неверный адрес в адресной строке.

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box, Divider, Link, List, ListItem, ListItemText, Typography } from '@mui/material';
 import React from 'react';
 
@@ -29,16 +30,24 @@ export default function Footer(): JSX.Element {
           <Typography variant="h6">Меню компании</Typography>
           <List dense>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="О компании" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="О компании" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Реквизиты и информация" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Реквизиты и информация" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Поставщикам" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Поставщикам" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Контакты" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Контакты" />
+              </Link>
             </ListItem>
           </List>
         </Box>
@@ -51,16 +60,24 @@ export default function Footer(): JSX.Element {
           <Typography variant="h6">Каталоги</Typography>
           <List dense>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Оригинальные запчасти" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Оригинальные запчасти" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Неоригинальные запчасти" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Неоригинальные запчасти" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Автомасла" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Автомасла" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Аккумуляторы" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Аккумуляторы" />
+              </Link>
             </ListItem>
           </List>
         </Box>
@@ -73,16 +90,24 @@ export default function Footer(): JSX.Element {
           <Typography variant="h6">Помощь</Typography>
           <List dense>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Часто задаваемые вопросы" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Часто задаваемые вопросы" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Оплата заказа" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Оплата заказа" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Доставка заказа" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Доставка заказа" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Возврат товара" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Возврат товара" />
+              </Link>
             </ListItem>
           </List>
         </Box>
@@ -96,13 +121,19 @@ export default function Footer(): JSX.Element {
           <Typography variant="h6">Товары и бренды</Typography>
           <List dense sx={{ fontSize: '20px' }}>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Список брендов" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Список брендов" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Популярные товары" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Популярные товары" />
+              </Link>
             </ListItem>
             <ListItem sx={{ padding: '0' }}>
-              <ListItemText primary="Наличие на складах" />
+              <Link href="#" underline="none" sx={{ color: 'white' }}>
+                <ListItemText primary="Наличие на складах" />
+              </Link>
             </ListItem>
           </List>
         </Box>
