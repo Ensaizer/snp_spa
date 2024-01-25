@@ -30,7 +30,6 @@ export const usersApi = createApi({
     }),
     updateUser: builder.mutation<UserType, UserType>({
       query({ isApproved }) {
-        console.log(isApproved);
         return {
           url: `/${isApproved.id.toString()}`,
           method: 'PATCH',

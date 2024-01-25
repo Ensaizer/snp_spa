@@ -56,7 +56,6 @@ export default function CartItem({ item, setChecked, setSum, checked}: CartItemP
     const deleteHandler = (id): void => {
         void deleteCart(id)
         setChecked((prev) => prev.filter(el=> el !== id))
-
     }
   return (
       <>

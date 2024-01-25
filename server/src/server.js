@@ -8,6 +8,7 @@ const authRouter = require("./routes/authRouter");
 const categoriesRouter = require("./routes/categoriesRouter");
 const userRouter = require("./routes/userRouter");
 const cartRouter = require("./routes/cartRouter");
+const orderRouter = require("./routes/orderRouter");
 require("dotenv").config();
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.use("/api/orders", orderRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/users", userRouter);
 app.use("/api/categories", categoriesRouter);
