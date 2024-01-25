@@ -28,6 +28,17 @@ export const cartApi = createApi({
             },
             invalidatesTags: ['Cart'],
         }),
+        createCart: builder.mutation< number, CartType>({
+            query(body) {
+                return {
+                    url: `/`,
+                    method: 'POST',
+                    body,
+                }
+            },
+            invalidatesTags: ['Cart'],
+        }),
+
         deleteCartById: builder.mutation< CartType, number >({
             query(id) {
                 return {
@@ -53,6 +64,7 @@ export const cartApi = createApi({
 export const { useGetOneCartByIdQuery,
     useUpdateCartMutation,
     useDeleteCartByIdMutation,
-    useDeleteAllCartsMutation
+    useDeleteAllCartsMutation,
+    useCreateCartMutation
 } = cartApi;
 

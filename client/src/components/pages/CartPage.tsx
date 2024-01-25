@@ -24,7 +24,7 @@ export default function CartPage(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
   const { data, isLoading } = useGetOneCartByIdQuery(user.id);
   const [deleteAll] = useDeleteAllCartsMutation();
-  const [checked, setChecked] = useState<number[]>([]);
+  const [checked, setChecked] = useState<number[] | undefined>([]);
   const [sum, setSum] = useState(0);
   const [flag, setFlag] = useState(false);
 
