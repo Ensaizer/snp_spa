@@ -1,10 +1,11 @@
 import { DeleteForeverOutlined } from '@mui/icons-material';
 import {Box, Button, Checkbox, List} from '@mui/material';
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 import {useAppSelector} from "../../store/hooks";
 import {useDeleteAllCartsMutation, useGetOneCartByIdQuery} from "../../store/cartSlice/cartSlice";
 import CartItem from "../ui/CartItem.tsx";
-import {Link} from "react-router-dom";
+
 
 
 export default function CartPage(): JSX.Element {
@@ -13,6 +14,7 @@ export default function CartPage(): JSX.Element {
     const [deleteAll] = useDeleteAllCartsMutation()
     const [checked, setChecked] = useState<number[]>([]);
     const [sum, setSum] = useState(0);
+    const [flag, setFlag] = useState(false)
 
     useEffect(() =>{
         if(data){
@@ -21,18 +23,6 @@ export default function CartPage(): JSX.Element {
         }
     }, [data]);
 
-    const handleClick = () => {
-        const order = {
-            userId: user.id,
-            status: 'в обработке',
-            deliveryAddress: user.deliveryAddress,
-            deliveryType: 'самовывоз',
-            paymentType: 'онлайн'
-        }
-
-    }
-
-    console.log(user)
 
   return (
     <>
@@ -55,10 +45,13 @@ export default function CartPage(): JSX.Element {
           }}>
               <Box>
                   <Checkbox onChange={() => setChecked((prev) => {
-                      if(data && prev.length === 0){
+                      setFlag(!flag)
+                      if(flag){
+                          return [];
+                      }
+                      if(data){
                           return data.map(item => item.id)
                       }
-                      return [];
                   })}/>
                   Отметить/снять все товары
               </Box>
@@ -84,18 +77,17 @@ export default function CartPage(): JSX.Element {
             alignItems: 'center',
             justifyContent: 'center',
             marginTop: '30px'
-        }}>Общая сумма заказа: {sum} рублей</Box>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px'}}>
-              <Button
+        }}>{data && (data.length !== 0) ? `Общая сумма заказа: ${sum} рублей` :  'Ваша корзина пуста'} </Box>
+           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px'}}>
+              { data && (data.length !== 0) &&<Button
                   component={Link}
                   to='/order'
                   variant="contained"
                   color="secondary"
                   sx={{minWidth: '300px'}}
-                  onClick={() =>handleClick()}
               >ЗАКАЗАТЬ</Button>
+              }
           </div>
-
       </List>
     </>
   );

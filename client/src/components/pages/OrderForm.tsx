@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import type {FC} from 'react';
 import {
     Box,
@@ -12,10 +12,12 @@ import {
 } from '@mui/material';
 import {useAppSelector} from "../../store/hooks.ts";
 import {useCreateNewOrderMutation} from "../../store/orderSlice/orderSlice.ts";
-import {OrderFormType} from "../../types";
+import type {OrderFormType} from "../../types";
+import ModalOrder from "./ModalOrder.tsx";
 
 
 const OrderForm:FC = () => {
+    const [open, setModalOpen] = useState(false)
     const {user} = useAppSelector(state=>state.auth);
     const [create] = useCreateNewOrderMutation();
 
@@ -32,6 +34,7 @@ const OrderForm:FC = () => {
                     const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as OrderFormType
                     formData.userId = user.id;
                     formData.status = 'в обработке';
+                    console.log(formData);
                     void create(formData);
                 }}
             >
@@ -49,9 +52,10 @@ const OrderForm:FC = () => {
                             id="demo-simple-select"
                             name="deliveryType"
                             label="Варианты доставки"
+                            defaultValue='Самовывоз'
                         >
-                            <MenuItem value={10}>Самовывоз</MenuItem>
-                            <MenuItem value={20}>Курьерской компанией</MenuItem>
+                            <MenuItem value='Самовывоз'>Самовывоз</MenuItem>
+                            <MenuItem value='Курьерской компанией'>Курьерской компанией</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -63,10 +67,11 @@ const OrderForm:FC = () => {
                             id="demo-simple-select"
                             name="paymentType"
                             label="Способы оплаты"
+                            defaultValue='банковской картой'
                         >
-                            <MenuItem value={10}>банковской картой</MenuItem>
-                            <MenuItem value={10}>курьеру во время доставки</MenuItem>
-                            <MenuItem value={10}>безналичная оплата</MenuItem>
+                            <MenuItem value='банковской картой'>банковской картой</MenuItem>
+                            <MenuItem value='курьеру во время доставки'>курьеру во время доставки</MenuItem>
+                            <MenuItem value='безналичная оплата'>безналичная оплата</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -74,6 +79,7 @@ const OrderForm:FC = () => {
                     Подтвердить заказ
                 </Button>
             </Box>
+            <ModalOrder modalOpen={open} setModalOpen={setModalOpen}/>
         </Box>
     );
 };
