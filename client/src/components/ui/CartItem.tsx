@@ -22,20 +22,34 @@ type CardProps = {
 };
 
 type CartItemProps = {
-  item: CardProps;
-  setChecked: () => void;
-  setSum: () => void;
-};
-export default function CartItem({
-  item,
-  setChecked,
-  setSum,
-  checked,
-}: CartItemProps): JSX.Element {
-  const { article, deliveryTime, name, minOrder, multiplicity, price, stock } = item.Product;
-  const [deleteCart] = useDeleteCartByIdMutation();
-  const [updateCartMutation] = useUpdateCartMutation();
-  const { quantity, userId, productId, id } = item;
+
+    item: CardProps;
+    setChecked: () => void;
+    setSum: () => void;
+}
+export default function CartItem({ item, setChecked, setSum, checked}: CartItemProps): JSX.Element {
+    const {article, deliveryTime, name, minOrder, multiplicity, price, stock} = item.Product;
+    const [deleteCart] = useDeleteCartByIdMutation();
+    const [updateCartMutation] = useUpdateCartMutation();
+    const { quantity, userId, productId, id }  = item;
+
+    const [ state, setState ] = useState({
+        quantity,
+        sum: price * quantity
+    })
+
+    const decrementClickHandle = () => {
+        if (state.quantity > minOrder){
+            setState((prev)=> ({
+                ...prev,
+                quantity: prev.quantity -= multiplicity,
+                sum: prev.sum -= price * multiplicity
+            }))
+            setSum((prev) => prev - price * multiplicity)
+            void updateCartMutation({id: userId, quantity: state.quantity, productId})
+        }
+    };
+
 
   const [state, setState] = useState({
     quantity,
