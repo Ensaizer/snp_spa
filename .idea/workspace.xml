@@ -142,8 +142,12 @@
       </map>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="VcsManagerConfiguration">
     <MESSAGE value="order" />
     <option name="LAST_COMMIT_MESSAGE" value="order" />
   </component>
 </project>
+=======
+</project>
+>>>>>>> Stashed changes
