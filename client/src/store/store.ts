@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/auth/authSlice';
 import productSlice from './Productslice/products';
-import {categoryApi} from "./categorySlise/category.ts";
-import {usersApi} from "./userSlice/userSlice.ts";
-import {cartApi} from "./cartSlice/cartSlice.ts";
-
+import { categoryApi } from './categorySlise/category';
+import { usersApi } from './userSlice/userSlice';
+import { cartApi } from './cartSlice/cartSlice';
+import { orderApi } from './OrderSlice/orderSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,10 +13,15 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(categoryApi.middleware, usersApi.middleware, cartApi.middleware),
-
+    getDefaultMiddleware().concat(
+      categoryApi.middleware,
+      usersApi.middleware,
+      cartApi.middleware,
+      orderApi.middleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

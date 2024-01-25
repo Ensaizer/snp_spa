@@ -12,13 +12,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Button, TextField } from '@mui/material';
-import type { UserType } from '../../types/auth';
-import {
-  useDeleteUserMutation,
-  useGetAllUsersQuery,
-  useUpdateUserMutation,
-} from '../../store/userSlice/userSlice';
+import { useGetAllOrdersQuery } from '../../store/OrderSlice/orderSlice';
+import type { OrderType } from '../../types';
 
 function Row(props: { order: OrderType }): JSX.Element {
   const { order } = props;
@@ -31,7 +26,7 @@ function Row(props: { order: OrderType }): JSX.Element {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{order.id}</TableCell>
+        <TableCell align="center">{order.id}</TableCell>
         <TableCell align="center">{order.status}</TableCell>
         <TableCell align="center">{order.deliveryAddress}</TableCell>
         <TableCell align="center">{order.deliveryDate}</TableCell>
@@ -48,19 +43,21 @@ function Row(props: { order: OrderType }): JSX.Element {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Продукт</TableCell>
-                    <TableCell>Количество</TableCell>
-                    <TableCell align="right">Цена</TableCell>
+                    <TableCell align="center">Продукт</TableCell>
+                    <TableCell align="center">Описание</TableCell>
+                    <TableCell align="center">Количество</TableCell>
+                    <TableCell align="center">Цена</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow key={order.Entry.Product.id}>
-                    <TableCell component="th" scope="row">
-                      {order.Entry.Product.name}
-                    </TableCell>
-                    <TableCell>{order.Entry.Product.quantity}</TableCell>
-                    <TableCell align="right">{order.Entry.Product.price}</TableCell>
-                  </TableRow>
+                  {order.Entries.map((entry) => (
+                    <TableRow key={entry.Product.name}>
+                      <TableCell align="center">{entry.Product.name}</TableCell>
+                      <TableCell align="center">{entry.Product.description}</TableCell>
+                      <TableCell align="center">{entry.quantity}</TableCell>
+                      <TableCell align="center">{entry.price}</TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </Box>
@@ -71,18 +68,19 @@ function Row(props: { order: OrderType }): JSX.Element {
   );
 }
 
-export default function CollapsibleTableForUsers(): JSX.Element {
-  const { data } = useGetAllUsersQuery('');
+export default function CollapsibleTableForOrdersAdmin(): JSX.Element {
+  const { data } = useGetAllOrdersQuery('');
+  if (!data) return <>Загрузка...</>;
   return data.length !== 0 ? (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Имя</TableCell>
             <TableCell align="center">Номер заказа</TableCell>
             <TableCell align="center">Статус заказа</TableCell>
             <TableCell align="center">Адрес доставки</TableCell>
+            <TableCell align="center">Дата доставки</TableCell>
             <TableCell align="center">Тип доставки</TableCell>
             <TableCell align="center">Тип оплаты</TableCell>
           </TableRow>

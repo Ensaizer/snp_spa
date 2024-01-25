@@ -13,19 +13,20 @@ export type OrganizationType = {
   corrAccount: string;
 };
 
-export type OrderType ={
+export type OrderType = {
   id: number;
   userId: number;
-  status:string;
+  status: string;
+  deliveryDate: string;
   deliveryAddress: string;
   deliveryType: string;
-  paymentType:string;
-}
+  paymentType: string;
+};
 
 export type OrderFormType = {
   userId?: number;
   status?: string;
   deliveryAddress: string;
   deliveryType: string;
-  paymentType:string;
-}
+  paymentType: string;
+};
