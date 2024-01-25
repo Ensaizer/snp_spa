@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="order">
+      <change afterPath="$PROJECT_DIR$/client/src/components/pages/ModalOrder.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/orderRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/orderRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/pages/OrderForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/OrderForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +115,7 @@
       <workItem from="1705992946536" duration="9765000" />
       <workItem from="1706074750908" duration="21467000" />
       <workItem from="1706098247576" duration="2154000" />
-      <workItem from="1706162357331" duration="2998000" />
+      <workItem from="1706162357331" duration="8070000" />
     </task>
     <task id="LOCAL-00001" summary="order">
       <option name="closed" value="true" />
