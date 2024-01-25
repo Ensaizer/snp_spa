@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { CategoryType } from '../../types';
+
 
 type CartType = {
     id: number,
@@ -13,10 +13,9 @@ export const cartApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/carts' }),
     tagTypes: ['Cart'],
     endpoints: (builder) => ({
-        getOneCartById: builder.query<CategoryType[], number>({
+        getOneCartById: builder.query<CartType[], number>({
             query: (id) => `${id}`,
-            providesTags: (result) =>
-                result ? result.map(({ id }) => ({ type: 'Cart', id } as const)) : [],
+            providesTags: (result, error, arg) => result ? result.map(({ id }) => ({ type: 'Cart', id: arg } as const)) : [],
         }),
         updateCart: builder.mutation< number, CartType>({
             query(body) {
@@ -36,7 +35,7 @@ export const cartApi = createApi({
                     body,
                 }
             },
-            invalidatesTags: ['Cart'],
+            invalidatesTags: (result, error, arg) => [{type: 'Cart', id: arg.userId}],
         }),
 
         deleteCartById: builder.mutation< CartType, number >({
