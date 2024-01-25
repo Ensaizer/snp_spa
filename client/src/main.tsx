@@ -13,8 +13,9 @@ import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
 import PrivateRouter from './components/ui/PrivateRouter';
 import ErrorBoundary from './components/ui/ErrorBoundary';
-import OrderForm from "./components/pages/OrderForm.tsx";
-import PrivateRouterAuth from "./components/ui/PrivateRouterAuth";
+import OrderForm from './components/pages/OrderForm.tsx';
+import PrivateRouterAuth from './components/ui/PrivateRouterAuth';
+import PrivateAdminRouter from './components/ui/PrivateAdminRouter.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,32 +25,56 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'registration',
-        element: <PrivateRouter><RegistrationPage/></PrivateRouter>,
+        element: (
+          <PrivateRouter>
+            <RegistrationPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: 'products/:id',
-        element: <ProductPage/>,
+        element: <ProductPage />,
       },
       {
         path: 'products/:id/edit',
-        element: <PrivateRouterAuth><EditProductPage/></PrivateRouterAuth>,
+        element: (
+          <PrivateRouterAuth>
+            <EditProductPage />
+          </PrivateRouterAuth>
+        ),
       },
       {
         path: 'admin',
-        element: <PrivateRouterAuth><AdminPage/></PrivateRouterAuth>,
+        element: (
+          <PrivateAdminRouter>
+            <AdminPage />
+          </PrivateAdminRouter>
+        ),
       },
       {
         path: 'profile',
-        element: <PrivateRouterAuth><ProfilePage/></PrivateRouterAuth>,
+        element: (
+          <PrivateRouterAuth>
+            <ProfilePage />
+          </PrivateRouterAuth>
+        ),
       },
       {
         path: 'cart',
-        element: <PrivateRouterAuth><CartPage/></PrivateRouterAuth>,
+        element: (
+          <PrivateRouterAuth>
+            <CartPage />
+          </PrivateRouterAuth>
+        ),
       },
       {
         path: 'order',
-        element: <PrivateRouterAuth><OrderForm/></PrivateRouterAuth>,
-      }
+        element: (
+          <PrivateRouterAuth>
+            <OrderForm />
+          </PrivateRouterAuth>
+        ),
+      },
     ],
   },
 ]);

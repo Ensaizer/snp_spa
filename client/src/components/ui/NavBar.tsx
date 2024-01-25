@@ -30,7 +30,7 @@ function NavBar(): JSX.Element {
             sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
           >
             <Button color="inherit" component={NavLink} to="/">
-              <Typography variant='h5'>SNP</Typography>
+              <Typography variant="h5">SNP</Typography>
               <img
                 alt="logo"
                 width="50"
@@ -70,6 +70,11 @@ function NavBar(): JSX.Element {
                 Выйти
               </Button>
             </>
+          )}
+          {user.roleId === 3 && (
+            <Button color="inherit" component={NavLink} to="/admin">
+              Админ панель
+            </Button>
           )}
           <Modal
             open={modal}
