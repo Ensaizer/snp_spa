@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { Box, ButtonGroup, Container, Grid } from '@mui/material';
+import { Alert, Box, ButtonGroup, Container, Grid, Snackbar } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,6 +14,11 @@ function Product(): JSX.Element {
   const dispatch = useAppDispatch();
   const [create] = useCreateCartMutation();
   const { user } = useAppSelector((state) => state.auth);
+  const [open, setOpen] = useState(false);
+  const { vertical, horizontal } = {
+    vertical: 'top',
+    horizontal: 'center',
+  };
   const { activeProduct, error, isLoading } = useAppSelector((state) => state.productsState);
   const [quantity, setQuantity] = useState(0);
   const decrementClickHandle = (): void => {
@@ -35,7 +40,8 @@ function Product(): JSX.Element {
       productId: id,
       quantity,
     };
-    await create(cart).then(() => navigate('/cart'));
+    await create(cart);
+    // .then(() => navigate('/cart'));
   };
 
   return (
@@ -147,12 +153,34 @@ function Product(): JSX.Element {
               type="button"
               id="addtocart-button"
               disabled={!quantity || !user.isApproved}
-              onClick={(): void => clickCreateCartHandler()}
+              onClick={(): void => {
+                clickCreateCartHandler();
+                setOpen(true);
+              }}
             >
               Добавить в корзину
               <AddShoppingCartIcon sx={{ marginLeft: '10px' }} />
             </Button>
           </Box>
+          <div>
+            <Snackbar
+              open={open}
+              autoHideDuration={2000}
+              anchorOrigin={{ vertical, horizontal }}
+              key={vertical + horizontal}
+              onClose={() => setOpen(false)}
+            >
+              <Alert
+                onClose={() => setOpen(false)}
+                severity="success"
+                color='warning'
+                variant="filled"
+                sx={{ width: '100%' }}
+              >
+                Товар добавлен в корзину
+              </Alert>
+            </Snackbar>
+          </div>
         </Container>
       )}
     </>

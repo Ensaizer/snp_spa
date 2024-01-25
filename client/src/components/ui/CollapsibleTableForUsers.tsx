@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Button, Input, TextField } from '@mui/material';
+import { Alert, Button, Input, Snackbar, TextField } from '@mui/material';
 import type { UserType } from '../../types/auth';
 import {
   useDeleteUserMutation,
@@ -128,36 +128,63 @@ export default function CollapsibleTableForUsers(): JSX.Element {
   const deleteUserHandler = async (id: UserType['id']): Promise<void> => {
     await deleteUserMutation({ id });
   };
+  const [alertOpen, setAlertOpen] = React.useState(false);
+  const { vertical, horizontal } = {
+    vertical: 'top',
+    horizontal: 'center',
+  };
   const updateDiscountHandler = async (isApproved): Promise<void> => {
     console.log(isApproved.id, isApproved.discount, isApproved.isApproved);
     await updateUserMutation({ isApproved });
+    setAlertOpen(true);
   };
   return approvedUsers.length !== 0 ? (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Имя</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Телефон</TableCell>
-            <TableCell align="center">Тип</TableCell>
-            <TableCell align="center">Скидка</TableCell>
-            <TableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {approvedUsers.map((user) => (
-            <Row
-              key={user.id}
-              user={user}
-              deleteUserHandler={deleteUserHandler}
-              updateDiscountHandler={updateDiscountHandler}
-            />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Имя</TableCell>
+              <TableCell align="center">Email</TableCell>
+              <TableCell align="center">Телефон</TableCell>
+              <TableCell align="center">Тип</TableCell>
+              <TableCell align="center">Скидка</TableCell>
+              <TableCell />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {approvedUsers.map((user) => (
+              <Row
+                key={user.id}
+                user={user}
+                deleteUserHandler={deleteUserHandler}
+                updateDiscountHandler={updateDiscountHandler}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <div>
+        <Snackbar
+          open={alertOpen}
+          autoHideDuration={2000}
+          anchorOrigin={{ vertical, horizontal }}
+          key={vertical + horizontal}
+          onClose={() => setAlertOpen(false)}
+        >
+          <Alert
+            onClose={() => setAlertOpen(false)}
+            severity="success"
+            color="warning"
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            Изменения сохранены
+          </Alert>
+        </Snackbar>
+      </div>
+    </>
   ) : (
     <Typography>Нет пользователей</Typography>
   );
