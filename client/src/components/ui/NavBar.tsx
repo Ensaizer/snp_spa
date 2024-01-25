@@ -22,15 +22,24 @@ function NavBar(): JSX.Element {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-      {/* <AppBar position="static" sx={{backgroundColor: '#F0EFFA', color: '#2F2B4A'}}> */}
+        {/* <AppBar position="static" sx={{backgroundColor: '#F0EFFA', color: '#2F2B4A'}}> */}
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            SNP
-            <LocalShippingIcon sx={{verticalAlign: 'middle', width: '60px', height: '30px'}}/>
-          </Typography>
+          <Box
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
+          >
+            <Button color="inherit" component={NavLink} to="/">
+              <Typography variant='h5'>SNP</Typography>
+              <img
+                alt="logo"
+                width="50"
+                height="50"
+                src="/icon.png"
+                style={{ marginLeft: '10px' }}
+              />
+            </Button>
+          </Box>
           <Button color="inherit" component={NavLink} to="/">
             Главная
           </Button>
@@ -62,10 +71,13 @@ function NavBar(): JSX.Element {
               </Button>
             </>
           )}
-          <Modal open={modal} handleClose={() => {
-            dispatch(setModal());
-            dispatch(clearError())
-          }}/>
+          <Modal
+            open={modal}
+            handleClose={() => {
+              dispatch(setModal());
+              dispatch(clearError());
+            }}
+          />
         </Toolbar>
       </AppBar>
     </Box>
