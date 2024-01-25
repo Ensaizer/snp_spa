@@ -13,6 +13,7 @@ import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
 import PrivateRouter from './components/ui/PrivateRouterAuth';
 import ErrorBoundary from './components/ui/ErrorBoundary';
+import OrderForm from "./components/pages/OrderForm.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,17 +34,21 @@ const router = createBrowserRouter([
         element: <EditProductPage/>,
       },
       {
-        path: '/admin',
+        path: 'admin',
         element: <AdminPage/>,
       },
       {
-        path: '/profile',
+        path: 'profile',
         element: <ProfilePage/>,
       },
       {
-        path: '/cart',
+        path: 'cart',
         element: <CartPage/>,
       },
+      {
+        path: 'order',
+        element: <OrderForm/>,
+      }
     ],
   },
 ]);
