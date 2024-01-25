@@ -1,10 +1,8 @@
-import { DeleteForeverOutlined } from '@mui/icons-material';
 import {
   Box,
   Button,
   Checkbox,
   Container,
-  List,
   Paper,
   Table,
   TableBody,
@@ -56,11 +54,8 @@ export default function CartPage(): JSX.Element {
         <Box
           sx={{
             display: 'flex',
-            // width: '300px',
             alignItems: 'center',
-
             justifyContent: 'space-between',
-            // padding: '20px',
           }}
         >
           <Checkbox sx={{marginRight: '10px'}}

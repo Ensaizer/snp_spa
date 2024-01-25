@@ -29,7 +29,7 @@ export default function RegistrationForm(): JSX.Element {
       </Typography>
       <Box
         component="form"
-        sx={{ minWidth: '400px' }}
+        sx={{ minWidth: '450px' }}
         onSubmit={(e) => void dispatch(registrationHandlerThunk(e)).then(() => setModalOpen(true))}
       >
         <Box mb={1}>

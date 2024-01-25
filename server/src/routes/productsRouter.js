@@ -4,50 +4,48 @@ const { Product } = require("../../db/models");
 
 const productsRouter = express.Router();
 
-
-
 productsRouter.post("/", async (req, res) => {
-  try{
+  try {
     const { body } = req;
     const newProduct = await Product.create(body);
     return res.status(200).json(newProduct);
   } catch (e) {
-    res.status(500).json(e)
+    res.status(500).json(e);
   }
-  
 });
 
 productsRouter.delete("/:id", async (req, res) => {
-  try{
+  try {
     const { id } = req.params;
     await Product.destroy({ where: { id } });
     return res.sendStatus(200);
-  }catch (e) {
-    res.status(500).json(e)
+  } catch (e) {
+    res.status(500).json(e);
   }
 });
 
 productsRouter.patch("/:id", async (req, res) => {
-  try{
+  try {
     const { body } = req;
     const { id } = req.params;
     const product = await Product.update(body, { where: { id } });
     return res.status(200).json(product);
   } catch (e) {
-    res.status(500).json(e)
+    res.status(500).json(e);
   }
 });
 
-productsRouter.get('/search', async (req, res) => {
+productsRouter.get("/search", async (req, res) => {
   try {
     const { input } = req.query;
     const products = await Product.findAll({
-      where: {article: {
-                [Op.iLike]: `%${input}%`,
-              },
+      where: {
+        article: {
+          [Op.iLike]: `%${input}%`,
+        },
       },
     });
-    setTimeout(() => res.json(products), 500);
+    return res.json(products);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);
@@ -55,7 +53,7 @@ productsRouter.get('/search', async (req, res) => {
 });
 
 productsRouter.get("/", async (req, res) => {
-  try{
+  try {
     const products = await Product.findAll();
     return res.status(200).json(products);
   } catch (e) {
@@ -63,7 +61,7 @@ productsRouter.get("/", async (req, res) => {
   }
 });
 productsRouter.get("/:id", async (req, res) => {
-  try{
+  try {
     const { id } = req.params;
     const product = await Product.findOne({ where: { id: +id } });
     res.status(200).json(product);
