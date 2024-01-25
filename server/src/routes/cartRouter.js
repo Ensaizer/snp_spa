@@ -31,4 +31,10 @@ cartRouter.get("/:id", async (req, res) => {
 });
 
 
+cartRouter.post("/", async (req, res) => {
+    const { body } = req;
+    await Cart.create(body);
+    res.sendStatus(200);
+});
+
 module.exports = cartRouter;
