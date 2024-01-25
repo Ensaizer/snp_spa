@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/pages/OrderForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/store/orderSlice/orderSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/routes/orderRouter.js" afterDir="false" />
+    <list default="true" id="cab4af3c-af7c-49ee-ba48-ca68af82ab27" name="Changes" comment="order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/pages/CartPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ui/CartItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/userSlice/userSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/types/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/orderRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/orderRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,9 +93,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.db" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.db" />
         <item itemvalue="npm.db" />
         <item itemvalue="npm.dev" />
       </list>
@@ -121,7 +112,17 @@
       <workItem from="1705992946536" duration="9765000" />
       <workItem from="1706074750908" duration="21467000" />
       <workItem from="1706098247576" duration="2154000" />
+      <workItem from="1706162357331" duration="2998000" />
     </task>
+    <task id="LOCAL-00001" summary="order">
+      <option name="closed" value="true" />
+      <created>1706116102109</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706116102109</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,5 +138,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="order" />
+    <option name="LAST_COMMIT_MESSAGE" value="order" />
   </component>
 </project>
