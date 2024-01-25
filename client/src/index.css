@@ -5,8 +5,9 @@
   /* background-color: #f4f5f7; */
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 #root {
@@ -57,4 +58,8 @@ html, body {
   display: block;
   opacity: 1;
   transition: all 0.5s linear;
+}
+
+.css-ps3y9-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+  color: black !important;
 }
