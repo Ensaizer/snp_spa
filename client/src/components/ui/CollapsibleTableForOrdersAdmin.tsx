@@ -13,20 +13,21 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import type { SelectChangeEvent } from '@mui/material';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Alert, FormControl, InputLabel, MenuItem, Select, Snackbar } from '@mui/material';
 import {
   useGetAllOrdersQuery,
   useUpdateOrderByIdMutation,
 } from '../../store/orderSlice/orderSlice';
 import type { OrderType } from '../../types';
 
-function Row(props: { order: OrderType; updateStatusHandler }): JSX.Element {
-  const { order, updateStatusHandler } = props;
+function Row(props: { order: OrderType; updateStatusHandler; setAlertOpen }): JSX.Element {
+  const { order, updateStatusHandler, setAlertOpen } = props;
   const [open, setOpen] = React.useState(false);
   const [status, setStatus] = React.useState(order.status);
   const handleChange = (event: SelectChangeEvent): void => {
     setStatus(event.target.value);
-    updateStatusHandler({ id: order.id, newStatus: event.target.value });
+    void updateStatusHandler({ id: order.id, newStatus: event.target.value });
+    setAlertOpen(true);
   };
   return (
     <>
@@ -104,28 +105,59 @@ export default function CollapsibleTableForOrdersAdmin(): JSX.Element {
     console.log(newStatus);
     await updateOrderByIdMutation(newStatus);
   };
+  const [alertOpen, setAlertOpen] = React.useState(false);
+  const { vertical, horizontal } = {
+    vertical: 'top',
+    horizontal: 'center',
+  };
   if (!data) return <>Загрузка...</>;
   return data.length !== 0 ? (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell align="center">Номер заказа</TableCell>
-            <TableCell align="center">Статус заказа</TableCell>
-            <TableCell align="center">Адрес доставки</TableCell>
-            <TableCell align="center">Дата доставки</TableCell>
-            <TableCell align="center">Тип доставки</TableCell>
-            <TableCell align="center">Тип оплаты</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((order) => (
-            <Row key={order.id} order={order} updateStatusHandler={updateStatusHandler} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell align="center">Номер заказа</TableCell>
+              <TableCell align="center">Статус заказа</TableCell>
+              <TableCell align="center">Адрес доставки</TableCell>
+              <TableCell align="center">Дата доставки</TableCell>
+              <TableCell align="center">Тип доставки</TableCell>
+              <TableCell align="center">Тип оплаты</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((order) => (
+              <Row
+                key={order.id}
+                order={order}
+                updateStatusHandler={updateStatusHandler}
+                setAlertOpen={setAlertOpen}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <div>
+        <Snackbar
+          open={alertOpen}
+          autoHideDuration={2000}
+          anchorOrigin={{ vertical, horizontal }}
+          key={vertical + horizontal}
+          onClose={() => setAlertOpen(false)}
+        >
+          <Alert
+            onClose={() => setAlertOpen(false)}
+            severity="success"
+            color="warning"
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            Изменения сохранены
+          </Alert>
+        </Snackbar>
+      </div>
+    </>
   ) : (
     <Typography>Нет активных заказов</Typography>
   );
