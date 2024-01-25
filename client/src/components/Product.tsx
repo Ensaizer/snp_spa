@@ -1,20 +1,19 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { Box, ButtonGroup, Container } from '@mui/material';
+import { Box, ButtonGroup, Container, Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getOneProductByIdThunk } from '../store/Productslice/ProductThunk';
-import {useCreateCartMutation} from "../store/cartSlice/cartSlice";
-
+import { useCreateCartMutation } from '../store/cartSlice/cartSlice';
 
 function Product(): JSX.Element {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [ create ] = useCreateCartMutation()
-  const {user} = useAppSelector(state => state.auth);
+  const [create] = useCreateCartMutation();
+  const { user } = useAppSelector((state) => state.auth);
   const { activeProduct, error, isLoading } = useAppSelector((state) => state.productsState);
   const [quantity, setQuantity] = useState(0);
 
@@ -31,14 +30,14 @@ function Product(): JSX.Element {
     }
   }, []);
 
-  const clickCreateCartHandler = async () =>{
-       const cart = {
-         userId: user.id,
-         productId: id,
-         quantity
-       }
-       await create(cart).then(() => navigate('/cart'))
-  }
+  const clickCreateCartHandler = async () => {
+    const cart = {
+      userId: user.id,
+      productId: id,
+      quantity,
+    };
+    await create(cart).then(() => navigate('/cart'));
+  };
 
   return (
     <>
@@ -48,43 +47,43 @@ function Product(): JSX.Element {
       {!isLoading && !error && (
         <Container
           maxWidth="md"
-          sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}
+          sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' , gap: '80px'}}
         >
-          <Box>
-            <Box
-              sx={{ display: 'flex', gap: '30px', alignItems: 'baseline', marginBottom: '10px' }}
-            >
+          <Grid container spacing={2} sx={{alignContent: 'flex-start'}}>
+            <Grid item xs={4}>
               <Typography variant="h5" color="primary">
                 Бренд
               </Typography>
+            </Grid>
+            <Grid item xs={8}>
               <Typography variant="h6">{activeProduct.brandId}</Typography>
-            </Box>
-            <Box
-              sx={{ display: 'flex', gap: '30px', alignItems: 'baseline', marginBottom: '10px' }}
-            >
+            </Grid>
+            <Grid item xs={4}>
               <Typography variant="h5" color="primary">
                 Артикул
               </Typography>
+            </Grid>
+            <Grid item xs={8}>
               <Typography variant="h6">{activeProduct.article}</Typography>
-            </Box>
-            <Box
-              sx={{ display: 'flex', gap: '30px', alignItems: 'baseline', marginBottom: '10px' }}
-            >
+            </Grid>
+            <Grid item xs={4}>
               <Typography variant="h5" color="primary">
                 Наименование
               </Typography>
+            </Grid>
+            <Grid item xs={8}>
               <Typography variant="h6">{activeProduct.name}</Typography>
-            </Box>
-            <Box
-              sx={{ display: 'flex', gap: '30px', alignItems: 'baseline', marginBottom: '10px' }}
-            >
+            </Grid>
+            <Grid item xs={4}>
               <Typography variant="h5" color="primary">
                 Описание
               </Typography>
+            </Grid>
+            <Grid item xs={8}>
               <Typography variant="h6">{activeProduct.description}</Typography>
-            </Box>
-          </Box>
-          <Box>
+            </Grid>
+          </Grid>
+          <Box >
             <Box>
               <Box sx={{ display: 'flex', gap: '10px' }} mb={2}>
                 <Typography variant="h5" color="primary">
@@ -94,7 +93,7 @@ function Product(): JSX.Element {
               </Box>
               <Box sx={{ display: 'flex', gap: '10px' }} mb={2}>
                 <Typography variant="h5" color="primary">
-                  Минимальный заказ:
+                  Мин. заказ:
                 </Typography>
                 <Typography variant="h5">{`${activeProduct.minOrder} шт`}</Typography>
               </Box>
@@ -149,10 +148,10 @@ function Product(): JSX.Element {
               type="button"
               id="addtocart-button"
               disabled={!quantity}
-              onClick={() => clickCreateCartHandler()}
+              onClick={():void => clickCreateCartHandler()}
             >
               Добавить в корзину
-              <AddShoppingCartIcon sx={{marginLeft: '10px'}}/>
+              <AddShoppingCartIcon sx={{ marginLeft: '10px' }} />
             </Button>
           </Box>
         </Container>
