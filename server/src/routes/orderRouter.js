@@ -8,18 +8,26 @@ orderRouter.post('/', async (req, res) => {
   try {
     const { body } = req;
     let order = await Order.create(body);
+
     order = order.get();
 
     let result = await Cart.findAll({
       where: { userId: order.userId },
       include: {
         model: Product,
-        attributes: ['price'],
+        attributes: ['price', 'stock', 'id'],
       },
     });
 
     result = result.map((item) => item.get());
     const destroyIds = result.map((item) => item.id);
+    const newStocks = result.map((item) => ({
+      id: item.productId,
+      stock: item.Product.stock - item.quantity,
+    }));
+    console.log(newStocks);
+    await Product.bulkCreate(newStocks, { updateOnDuplicate: ['stock'] });
+    // Promise.all(newStocks.map((item) => Product.update(item, { where: { id: item.id } })));
     let entries = result.map((item) => ({
       ...item,
       price: item.Product.price,

@@ -6,14 +6,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getOneProductByIdThunk } from '../store/Productslice/ProductThunk';
-import { useCreateCartMutation } from '../store/cartSlice/cartSlice';
+import { useCreateCartMutation, useGetOneCartByIdQuery } from '../store/cartSlice/cartSlice';
 
 function Product(): JSX.Element {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [create] = useCreateCartMutation();
   const { user } = useAppSelector((state) => state.auth);
+  const { data } = useGetOneCartByIdQuery(user.id);
+  console.log(user);
   const [open, setOpen] = useState(false);
   const { vertical, horizontal } = {
     vertical: 'top',
@@ -38,7 +39,7 @@ function Product(): JSX.Element {
     const cart = {
       userId: user.id,
       productId: id,
-      quantity,
+      quantity: activeProduct.minOrder,
     };
     await create(cart);
     // .then(() => navigate('/cart'));
@@ -112,10 +113,14 @@ function Product(): JSX.Element {
                 <Typography variant="h5" color="primary">
                   Цена:
                 </Typography>
-                <Typography variant="h5">{`${activeProduct.price} руб`}</Typography>
+                <Typography variant="h5">{`${
+                  user.status !== 'guest'
+                    ? activeProduct.price * ((100 - user.discount) / 100)
+                    : activeProduct.price
+                } руб`}</Typography>
               </Box>
             </Box>
-            <ButtonGroup
+            {/* <ButtonGroup
               variant="contained"
               size="large"
               sx={{ marginBottom: '20px', marginRight: '10px' }}
@@ -138,21 +143,24 @@ function Product(): JSX.Element {
                 onClick={incrementClickHandle}
               >
                 +
-              </Button>
-            </ButtonGroup>
+              </Button> */}
+            {/* </ButtonGroup>
             <Box sx={{ display: 'flex', gap: '10px' }} mb={2}>
               <Typography variant="h5" color="secondary">
                 Сумма:
               </Typography>
-              <Typography variant="h5">{`${activeProduct.price * quantity} руб`}</Typography>
-            </Box>
+              <Typography variant="h5">{`${
+                activeProduct.price * ((100 - user.discount) / 100) * quantity
+              } руб`}</Typography>
+            </Box> */}
             <Button
               variant="contained"
               size="large"
               color="secondary"
               type="button"
               id="addtocart-button"
-              disabled={!quantity || !user.isApproved}
+              // disabled={!quantity || !user.isApproved}
+              disabled={!user.isApproved || data?.some((el) => el.productId === activeProduct.id)}
               onClick={(): void => {
                 clickCreateCartHandler();
                 setOpen(true);
@@ -173,7 +181,7 @@ function Product(): JSX.Element {
               <Alert
                 onClose={() => setOpen(false)}
                 severity="success"
-                color='warning'
+                color="warning"
                 variant="filled"
                 sx={{ width: '100%' }}
               >
