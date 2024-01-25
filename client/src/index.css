@@ -64,3 +64,13 @@ body {
 .css-ps3y9-MuiButtonBase-root-MuiButton-root.Mui-disabled {
   color: black !important;
 }
+
+.main__card{
+  display: grid;
+  gap: 20px;
+  padding: 20px 5px;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr;
+}
+.main__card a {
+  text-decoration: none;
+}
