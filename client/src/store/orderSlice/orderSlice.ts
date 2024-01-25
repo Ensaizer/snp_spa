@@ -24,6 +24,7 @@ export const orderApi = createApi({
     }),
     updateOrderById: builder.mutation<number, OrderType>({
       query(body) {
+        console.log(body);
         return {
           url: `/${body.id}`,
           method: 'PATCH',
