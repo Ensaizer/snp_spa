@@ -12,12 +12,22 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useGetAllOrdersQuery } from '../../store/orderSlice/orderSlice';
+import type { SelectChangeEvent } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+  useGetAllOrdersQuery,
+  useUpdateOrderByIdMutation,
+} from '../../store/orderSlice/orderSlice';
 import type { OrderType } from '../../types';
 
-function Row(props: { order: OrderType }): JSX.Element {
-  const { order } = props;
+function Row(props: { order: OrderType; updateStatusHandler }): JSX.Element {
+  const { order, updateStatusHandler } = props;
   const [open, setOpen] = React.useState(false);
+  const [status, setStatus] = React.useState(order.status);
+  const handleChange = (event: SelectChangeEvent): void => {
+    setStatus(event.target.value);
+    updateStatusHandler({ id: order.id, newStatus: event.target.value });
+  };
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -27,7 +37,26 @@ function Row(props: { order: OrderType }): JSX.Element {
           </IconButton>
         </TableCell>
         <TableCell align="center">{order.id}</TableCell>
-        <TableCell align="center">{order.status}</TableCell>
+        <TableCell align="center">
+          <FormControl sx={{ m: 1, minWidth: 200 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">Статус заказа</InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              onChange={handleChange}
+              autoWidth
+              label="Статус заказа"
+              defaultValue={status}
+            >
+              <MenuItem selected value="Сборка">
+                Сборка
+              </MenuItem>
+              <MenuItem value="В службе доставки">В службе доставки</MenuItem>
+              <MenuItem value="Отгрузка">Отгрузка</MenuItem>
+              <MenuItem value="Доставлено">Доставлено</MenuItem>
+            </Select>
+          </FormControl>
+        </TableCell>
         <TableCell align="center">{order.deliveryAddress}</TableCell>
         <TableCell align="center">{order.deliveryDate}</TableCell>
         <TableCell align="center">{order.deliveryType}</TableCell>
@@ -70,6 +99,11 @@ function Row(props: { order: OrderType }): JSX.Element {
 
 export default function CollapsibleTableForOrdersAdmin(): JSX.Element {
   const { data } = useGetAllOrdersQuery('');
+  const [updateOrderByIdMutation] = useUpdateOrderByIdMutation('');
+  const updateStatusHandler = async (newStatus): Promise<void> => {
+    console.log(newStatus);
+    await updateOrderByIdMutation(newStatus);
+  };
   if (!data) return <>Загрузка...</>;
   return data.length !== 0 ? (
     <TableContainer component={Paper}>
@@ -87,7 +121,7 @@ export default function CollapsibleTableForOrdersAdmin(): JSX.Element {
         </TableHead>
         <TableBody>
           {data.map((order) => (
-            <Row key={order.id} order={order} />
+            <Row key={order.id} order={order} updateStatusHandler={updateStatusHandler} />
           ))}
         </TableBody>
       </Table>

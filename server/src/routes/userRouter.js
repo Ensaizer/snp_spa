@@ -51,7 +51,7 @@ userRouter.delete('/:id', async (req, res) => {
     await User.destroy({ where: { id } });
     await sendMail(
       email,
-      'Регистрация на сайте SNP',
+      'Удаление с сайта SNP',
       'К сожалению ваша учетная запись была удалена из системы, т.к не прошла проверку службы безопасности.',
     );
     res.status(200).json(id);
@@ -70,7 +70,7 @@ userRouter.patch('/:id', async (req, res) => {
     if (body.isApproved) {
       await sendMail(
         email,
-        'Регистрация на сайте SNP',
+        'Доступ на сайт SNP',
         `Поздравляем, Вам дан доступ на сайт SNP, вход может быть осуществлен с помощью логина ${email} и пароля, введенного ранее.`,
       );
     }
