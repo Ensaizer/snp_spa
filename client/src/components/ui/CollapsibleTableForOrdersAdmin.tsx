@@ -93,6 +93,6 @@ export default function CollapsibleTableForOrdersAdmin(): JSX.Element {
       </Table>
     </TableContainer>
   ) : (
-    <Typography>Нет пользователей</Typography>
+    <Typography>Нет активных заказов</Typography>
   );
 }
