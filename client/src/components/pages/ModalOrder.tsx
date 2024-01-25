@@ -17,6 +17,7 @@ const Transition = React.forwardRef(
         ref: React.Ref<unknown>,
     ) => <Slide direction="up" ref={ref} {...props} />,
 );
+
 type ModalOrderProps ={
     modalOpen: boolean;
     setModalOpen: () => void

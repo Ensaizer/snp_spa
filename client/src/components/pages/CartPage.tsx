@@ -1,5 +1,4 @@
 import { DeleteForeverOutlined } from '@mui/icons-material';
-
 import {Box, Button, Checkbox, List} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
@@ -50,40 +49,27 @@ export default function CartPage(): JSX.Element {
             padding: '20px',
           }}
         >
-          <Box>
-            <Checkbox
-              onChange={() =>
-                setChecked((prev) => {
-                  if (data && prev.length === 0) {
-                    return data.map((item) => item.id);
+            <Box
+                sx={{
+                    display: 'flex',
+                    width: '300px',
+                    alignItems: 'center',
+
+                    justifyContent: 'space-between',
+                    padding: '20px'
+                }}>
+              <Checkbox onChange={() => setChecked((prev) => {
+                  setFlag(!flag)
+                  if(flag){
+                      return [];
                   }
-                  return [];
-                })
-              }
-            />
+                  if(data){
+                      return data.map(item => item.id)
+                  }
+              })}/>
             Отметить/снять все товары
           </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              width: '300px',
-              alignItems: 'center',
 
-              justifyContent: 'space-between',
-              padding: '20px'
-          }}>
-              <Box>
-                  <Checkbox onChange={() => setChecked((prev) => {
-                      setFlag(!flag)
-                      if(flag){
-                          return [];
-                      }
-                      if(data){
-                          return data.map(item => item.id)
-                      }
-                  })}/>
-                  Отметить/снять все товары
-              </Box>
               <Box sx={{
                   display: 'flex',
                   width: '300px',
@@ -97,7 +83,6 @@ export default function CartPage(): JSX.Element {
               </Box>
 
           </Box>
-        </Box>
         {data &&
           data.map((item) => (
             <CartItem

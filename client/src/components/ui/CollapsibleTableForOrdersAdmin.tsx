@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useGetAllOrdersQuery } from '../../store/OrderSlice/orderSlice';
+import { useGetAllOrdersQuery } from '../../store/orderSlice/orderSlice';
 import type { OrderType } from '../../types';
 
 function Row(props: { order: OrderType }): JSX.Element {

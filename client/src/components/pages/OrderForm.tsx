@@ -11,7 +11,7 @@ import {
     Typography,
 } from '@mui/material';
 import {useAppSelector} from "../../store/hooks.ts";
-import {useCreateNewOrderMutation} from "../../store/orderSlice/orderSlice.ts";
+import {useCreateNewOrderMutation} from "../../store/orderSlice/orderSlice";
 import type {OrderFormType} from "../../types";
 import ModalOrder from "./ModalOrder.tsx";
 
@@ -34,7 +34,7 @@ const OrderForm:FC = () => {
                     const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as OrderFormType
                     formData.userId = user.id;
                     formData.status = 'в обработке';
-                    console.log(formData);
+                    setModalOpen(true)
                     void create(formData);
                 }}
             >
