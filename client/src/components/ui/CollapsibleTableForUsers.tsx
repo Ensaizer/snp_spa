@@ -143,6 +143,7 @@ export default function CollapsibleTableForUsers(): JSX.Element {
             <TableCell align="center">Телефон</TableCell>
             <TableCell align="center">Тип</TableCell>
             <TableCell align="center">Скидка</TableCell>
+            <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>

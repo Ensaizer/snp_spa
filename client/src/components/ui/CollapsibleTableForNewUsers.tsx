@@ -115,7 +115,7 @@ export default function CollapsibleTableForUsers(): JSX.Element {
     await updateUserMutation({ isApproved });
   };
   return unApprovedUsers.length !== 0 ? (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ marginTop: '40px' }}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -124,6 +124,7 @@ export default function CollapsibleTableForUsers(): JSX.Element {
             <TableCell align="center">Email</TableCell>
             <TableCell align="center">Телефон</TableCell>
             <TableCell align="center">Тип</TableCell>
+            <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>
