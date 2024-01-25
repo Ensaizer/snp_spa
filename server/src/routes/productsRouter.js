@@ -7,22 +7,35 @@ const productsRouter = express.Router();
 
 
 productsRouter.post("/", async (req, res) => {
-  const { body } = req;
-  const newProduct = await Product.create(body);
-  return res.status(200).json(newProduct);
+  try{
+    const { body } = req;
+    const newProduct = await Product.create(body);
+    return res.status(200).json(newProduct);
+  } catch (e) {
+    res.status(500).json(e)
+  }
+  
 });
 
 productsRouter.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  await Product.destroy({ where: { id } });
-  return res.sendStatus(200);
+  try{
+    const { id } = req.params;
+    await Product.destroy({ where: { id } });
+    return res.sendStatus(200);
+  }catch (e) {
+    res.status(500).json(e)
+  }
 });
 
 productsRouter.patch("/:id", async (req, res) => {
-  const { body } = req;
-  const { id } = req.params;
-  const product = await Product.update(body, { where: { id } });
-  return res.status(200).json(product);
+  try{
+    const { body } = req;
+    const { id } = req.params;
+    const product = await Product.update(body, { where: { id } });
+    return res.status(200).json(product);
+  } catch (e) {
+    res.status(500).json(e)
+  }
 });
 
 productsRouter.get('/search', async (req, res) => {
@@ -42,13 +55,21 @@ productsRouter.get('/search', async (req, res) => {
 });
 
 productsRouter.get("/", async (req, res) => {
-  const products = await Product.findAll();
-  return res.status(200).json(products);
+  try{
+    const products = await Product.findAll();
+    return res.status(200).json(products);
+  } catch (e) {
+    return res.sendStatus(500);
+  }
 });
 productsRouter.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const product = await Product.findOne({ where: { id: +id } });
-  res.status(200).json(product);
+  try{
+    const { id } = req.params;
+    const product = await Product.findOne({ where: { id: +id } });
+    res.status(200).json(product);
+  } catch (e) {
+    return res.sendStatus(500);
+  }
 });
 
 module.exports = productsRouter;

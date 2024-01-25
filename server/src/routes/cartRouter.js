@@ -5,36 +5,60 @@ const cartRouter = express.Router();
 
 
 cartRouter.patch("/update", async (req, res) => {
-    const { id, quantity, productId } = req.body;
-    await Cart.update({ quantity }, { where: { userId: id, productId} });
-    return res.status(200)
+    try{
+        const { id, quantity, productId } = req.body;
+        await Cart.update({ quantity }, { where: { userId: id, productId} });
+        return res.status(200)
+    } catch (e) {
+        res.status(500).json(e)
+    }
+   
 });
 
 cartRouter.delete("/", async (req, res) => {
-    const body = req.body;
-    await Cart.destroy({where: {id: body} });
-    res.sendStatus(200);
+    try{
+        const body = req.body;
+        await Cart.destroy({where: {id: body} });
+        res.sendStatus(200);
+    } catch (e) {
+        res.status(500).json(e)
+    }
+    
 });
 cartRouter.delete("/:id", async (req, res) => {
-    const { id } = req.params
-    await Cart.destroy({where: {id} });
-    res.sendStatus(200);
+    try{
+        const { id } = req.params
+        await Cart.destroy({where: {id} });
+        res.sendStatus(200);
+    } catch (e) {
+        res.status(500).json(e)
+    }
 });
 
 cartRouter.get("/:id", async (req, res) => {
-    const { id } = req.params;
-    const carts = await Cart.findAll({
-        include: { model: Product },
-        where: { userId: id}
-    });
-    res.status(200).json(carts);
+    try{
+        const { id } = req.params;
+        const carts = await Cart.findAll({
+            include: { model: Product },
+            where: { userId: id}
+        });
+        res.status(200).json(carts);
+    } catch (e) {
+        res.status(500).json(e)
+    }
+    
 });
 
 
 cartRouter.post("/", async (req, res) => {
-    const { body } = req;
-    await Cart.create(body);
-    res.sendStatus(200);
+    try{
+        const { body } = req;
+        await Cart.create(body);
+        res.sendStatus(200);
+    } catch (e) {
+        res.status(500).json(e)
+    }
+    
 });
 
 module.exports = cartRouter;

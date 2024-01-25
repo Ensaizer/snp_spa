@@ -11,9 +11,10 @@ import EditProductPage from './components/pages/EditProductPage';
 import AdminPage from './components/pages/AdminPage';
 import CartPage from './components/pages/CartPage';
 import ProfilePage from './components/pages/ProfilePage';
-import PrivateRouter from './components/ui/PrivateRouterAuth';
+import PrivateRouter from './components/ui/PrivateRouter';
 import ErrorBoundary from './components/ui/ErrorBoundary';
 import OrderForm from "./components/pages/OrderForm.tsx";
+import PrivateRouterAuth from "./components/ui/PrivateRouterAuth";
 
 const router = createBrowserRouter([
   {
@@ -27,27 +28,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'products/:id',
-        element: <ProductPage/>,
+        element: <PrivateRouterAuth><ProductPage/></PrivateRouterAuth>,
       },
       {
         path: 'products/:id/edit',
-        element: <EditProductPage/>,
+        element: <PrivateRouterAuth><EditProductPage/></PrivateRouterAuth>,
       },
       {
         path: 'admin',
-        element: <AdminPage/>,
+        element: <PrivateRouterAuth><AdminPage/></PrivateRouterAuth>,
       },
       {
         path: 'profile',
-        element: <ProfilePage/>,
+        element: <PrivateRouterAuth><ProfilePage/></PrivateRouterAuth>,
       },
       {
         path: 'cart',
-        element: <CartPage/>,
+        element: <PrivateRouterAuth><CartPage/></PrivateRouterAuth>,
       },
       {
         path: 'order',
-        element: <OrderForm/>,
+        element: <PrivateRouterAuth><OrderForm/></PrivateRouterAuth>,
       }
     ],
   },
