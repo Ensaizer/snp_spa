@@ -12,6 +12,6 @@ export default function PrivateRouterAuth({
   redirectPath = '/',
 }: PrivateRouterProps): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
-  if (user.status === 'authenticated') return <Navigate to={redirectPath} />;
+  if (user.status !== 'authenticated') return <Navigate to={redirectPath} />;
   return children || <Outlet />;
 }

@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 import { Box, ButtonGroup, Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getOneProductByIdThunk } from '../store/Productslice/ProductThunk';
