@@ -56,6 +56,38 @@ orderRouter.get('/', async (req, res) => {
   }
 });
 
+orderRouter.get('/:userId', async (req, res) => {
+  try{
+    const orders = await Order.findAll({where: {userId: req.params.userId},
+      include: {
+        model: Entry,
+        include: {
+          model: Product,
+        },
+      },
+    });
+    res.json(orders);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
+orderRouter.get('/:userId', async (req, res) => {
+  try{
+    const orders = await Order.findAll({where: {userId: req.params.userId},
+      include: {
+        model: Entry,
+        include: {
+          model: Product,
+        },
+      },
+    });
+    res.json(orders);
+  } catch (e) {
+    res.status(500).json(e)
+  }
+});
+
 orderRouter.patch('/:id', async (req, res) => {
   try {
     const { body } = req;
