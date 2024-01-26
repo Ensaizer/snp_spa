@@ -71,7 +71,13 @@ function Row(props: { order: OrderType }): JSX.Element {
 
 export default function UserOrders(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
-  const { data } = useGetAllOrdersByUserIdQuery(user.id);
+  const { data, refetch } = useGetAllOrdersByUserIdQuery(user.id);
+  React.useLayoutEffect(() => {
+    const getData = async (): Promise<void> => {
+      await refetch();
+    };
+    getData();
+  }, [data, refetch]);
   if (!data) return <>Загрузка...</>;
   return data.length !== 0 ? (
     <TableContainer component={Paper}>

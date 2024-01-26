@@ -43,7 +43,7 @@ export const cartApi = createApi({
           body,
         };
       },
-      invalidatesTags: [{ type: 'Cart', id: 'LIST' }],
+      invalidatesTags: ['Cart'],
     }),
 
     deleteCartById: builder.mutation<CartType, number>({

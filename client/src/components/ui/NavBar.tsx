@@ -17,8 +17,7 @@ import { useGetOneCartByIdQuery } from '../../store/cartSlice/cartSlice';
 function NavBar(): JSX.Element {
   const [open, setOpen] = useState(false);
   const { user, modal } = useAppSelector((state) => state.auth);
-  const {data} = useGetOneCartByIdQuery(user.id);
-
+  const { data } = useGetOneCartByIdQuery(user.id);
 
   const dispatch = useAppDispatch();
   return (
@@ -63,7 +62,7 @@ function NavBar(): JSX.Element {
               <Button color="inherit" component={NavLink} to="/cart">
                 Корзина
                 <Badge badgeContent={data?.length} color="secondary">
-                  <ShoppingCartIcon sx={{color: 'white'}}/>
+                  <ShoppingCartIcon sx={{ color: 'white' }} />
                 </Badge>
               </Button>
               <Button

@@ -14,13 +14,28 @@ import { useAppSelector } from '../../store/hooks.ts';
 import { useCreateNewOrderMutation } from '../../store/orderSlice/orderSlice';
 import type { OrderFormType } from '../../types';
 import ModalOrder from './ModalOrder.tsx';
-import { useDeleteAllCartsMutation } from '../../store/cartSlice/cartSlice.ts';
+import {
+  cartApi,
+  useDeleteAllCartsMutation,
+  useGetOneCartByIdQuery,
+} from '../../store/cartSlice/cartSlice.ts';
 
-const OrderForm: FC = () => {
+export default function OrderForm(): JSX.Element {
   const [open, setModalOpen] = useState(false);
   const { user } = useAppSelector((state) => state.auth);
   const [create] = useCreateNewOrderMutation();
   const [deleteAll] = useDeleteAllCartsMutation();
+  const { data, refetch } = useGetOneCartByIdQuery(user.id);
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.currentTarget)) as unknown as OrderFormType;
+    formData.userId = user.id;
+    formData.status = 'Сборка';
+    setModalOpen(true);
+    await deleteAll([user.id]);
+    await create(formData);
+    await refetch();
+  };
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '20px' }}
@@ -28,21 +43,7 @@ const OrderForm: FC = () => {
       <Typography variant="h3" gutterBottom>
         Оформить заказ
       </Typography>
-      <Box
-        component="form"
-        sx={{ minWidth: '400px' }}
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          const formData = Object.fromEntries(
-            new FormData(e.currentTarget),
-          ) as unknown as OrderFormType;
-          formData.userId = user.id;
-          formData.status = 'Сборка';
-          setModalOpen(true);
-          void deleteAll([user.id]);
-          void create(formData);
-        }}
-      >
+      <Box component="form" sx={{ minWidth: '400px' }} onSubmit={(e) => void onSubmitHandler(e)}>
         <Box mb={1}>
           <TextField name="deliveryAddress" label="Адрес доставки" type="text" required fullWidth />
         </Box>
@@ -87,6 +88,4 @@ const OrderForm: FC = () => {
       <ModalOrder modalOpen={open} setModalOpen={setModalOpen} />
     </Box>
   );
-};
-
-export default OrderForm;
+}
