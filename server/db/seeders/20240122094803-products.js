@@ -461,35 +461,6 @@ module.exports = {
     ];
     await queryInterface.bulkInsert("Products", products);
 
-    const carts = [
-      {
-        productId: 1,
-        quantity: 1,
-        userId: 1,
-      },
-      {
-        productId: 5,
-        quantity: 1,
-        userId: 1,
-      },
-      {
-        productId: 3,
-        quantity: 3,
-        userId: 1,
-      },
-      {
-        productId: 4,
-        quantity: 2,
-        userId: 1,
-      },
-      {
-        productId: 2,
-        quantity: 2,
-        userId: 1,
-      },
-    ];
-
-    await queryInterface.bulkInsert("Carts", carts);
     const orders = [
       {
         userId: 1,

@@ -4,19 +4,21 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { Badge } from '@mui/material';
 import Modal from '../Modal';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logoutHandlerThunk } from '../../store/slices/auth/authThunks';
 import { clearError, setModal } from '../../store/slices/auth/authSlice';
+import { useGetOneCartByIdQuery } from '../../store/cartSlice/cartSlice';
 
 function NavBar(): JSX.Element {
   const [open, setOpen] = useState(false);
   const { user, modal } = useAppSelector((state) => state.auth);
+  const {data} = useGetOneCartByIdQuery(user.id);
+
 
   const dispatch = useAppDispatch();
   return (
@@ -60,6 +62,9 @@ function NavBar(): JSX.Element {
               </Button>
               <Button color="inherit" component={NavLink} to="/cart">
                 Корзина
+                <Badge badgeContent={data?.length} color="secondary">
+                  <ShoppingCartIcon sx={{color: 'white'}}/>
+                </Badge>
               </Button>
               <Button
                 color="inherit"

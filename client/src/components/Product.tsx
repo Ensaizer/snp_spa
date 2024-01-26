@@ -63,7 +63,7 @@ function Product(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item xs={8}>
-              <Typography variant="h6">{brands[activeProduct.brandId]}</Typography>
+              <Typography variant="h6">{brands[activeProduct.brandId-1]}</Typography>
             </Grid>
             <Grid item xs={4}>
               <Typography variant="h5" color="primary">

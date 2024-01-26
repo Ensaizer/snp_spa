@@ -25,7 +25,6 @@ orderRouter.post('/', async (req, res) => {
       id: item.productId,
       stock: item.Product.stock - item.quantity,
     }));
-    console.log(newStocks);
     await Product.bulkCreate(newStocks, { updateOnDuplicate: ['stock'] });
     // Promise.all(newStocks.map((item) => Product.update(item, { where: { id: item.id } })));
     let entries = result.map((item) => ({
@@ -34,6 +33,7 @@ orderRouter.post('/', async (req, res) => {
     }));
 
     entries = entries.map((item) => {
+      delete item.id;
       delete item.Product;
       delete item.createdAt;
       delete item.updatedAt;
