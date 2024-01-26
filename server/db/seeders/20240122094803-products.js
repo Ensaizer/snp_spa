@@ -490,6 +490,49 @@ module.exports = {
     ];
 
     await queryInterface.bulkInsert("Carts", carts);
+    const orders = [
+      {
+        userId: 1,
+        status: "Сборка",
+        deliveryAddress: "Москва ул.Сходненская 23",
+        deliveryDate: "20.03.2024 10:00",
+        deliveryType: "Самовывоз",
+        paymentType: "банковской картой",
+      },
+      {
+        userId: 2,
+        status: "Сборка",
+        deliveryAddress: "Пермь ул.Первомайская 17",
+        deliveryDate: "24.03.2024 10:00",
+        deliveryType: "Самовывоз",
+        paymentType: "курьеру во время доставки",
+      },
+      {
+        userId: 3,
+        status: "Сборка",
+        deliveryAddress: "Уфа Лихачевский проспект 17",
+        deliveryDate: "17.06.2024 10:00",
+        deliveryType: "Самовывоз",
+        paymentType: "курьеру во время доставки",
+      },
+      {
+        userId: 4,
+        status: "Сборка",
+        deliveryAddress: "Колыма ул.Солженицына 13",
+        deliveryDate: "28.06.2024 10:00",
+        deliveryType: "Курьерской компанией",
+        paymentType: "безналичная оплата",
+      },
+      {
+        userId: 3,
+        status: "Сборка",
+        deliveryAddress: "Казань ул.Пушкина 8",
+        deliveryDate: "28.06.2024 10:00",
+        deliveryType: "Курьерской компанией",
+        paymentType: "безналичная оплата",
+      },
+    ];
+    await queryInterface.bulkInsert("Orders", orders);
   },
 
   async down(queryInterface) {
