@@ -501,7 +501,7 @@ module.exports = {
       },
       {
         userId: 2,
-        status: "Сборка",
+        status: "В службе доставки",
         deliveryAddress: "Пермь ул.Первомайская 17",
         deliveryDate: "24.03.2024 10:00",
         deliveryType: "Самовывоз",
@@ -509,7 +509,7 @@ module.exports = {
       },
       {
         userId: 3,
-        status: "Сборка",
+        status: "Отгрузка",
         deliveryAddress: "Уфа Лихачевский проспект 17",
         deliveryDate: "17.06.2024 10:00",
         deliveryType: "Самовывоз",
@@ -517,7 +517,7 @@ module.exports = {
       },
       {
         userId: 4,
-        status: "Сборка",
+        status: "Отгрузка",
         deliveryAddress: "Колыма ул.Солженицына 13",
         deliveryDate: "28.06.2024 10:00",
         deliveryType: "Курьерской компанией",
@@ -525,14 +525,56 @@ module.exports = {
       },
       {
         userId: 3,
-        status: "Сборка",
+        status: "Доставлено",
         deliveryAddress: "Казань ул.Пушкина 8",
         deliveryDate: "28.06.2024 10:00",
         deliveryType: "Курьерской компанией",
         paymentType: "безналичная оплата",
       },
     ];
+
     await queryInterface.bulkInsert("Orders", orders);
+
+    const entries = [
+      {
+        quantity: 1,
+        price: 5400000,
+        productId: 1,
+        orderId: 1,
+      },
+      {
+        quantity: 1,
+        price: 77065,
+        productId: 3,
+        orderId: 2,
+      },
+      {
+        quantity: 2,
+        price: 19860,
+        productId: 4,
+        orderId: 3,
+      },
+      {
+        quantity: 1,
+        price: 76600,
+        productId: 5,
+        orderId: 4,
+      },
+      {
+        quantity: 1,
+        price: 12000,
+        productId: 6,
+        orderId: 3,
+      },
+      {
+        quantity: 3,
+        price: 36000,
+        productId: 6,
+        orderId: 5,
+      },
+    ];
+
+    await queryInterface.bulkInsert("Entries", entries);
   },
 
   async down(queryInterface) {
