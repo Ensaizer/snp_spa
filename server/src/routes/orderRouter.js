@@ -1,5 +1,5 @@
 const express = require('express');
-const { Order, Entry, Cart, Product } = require('../../db/models');
+const { Order, Entry, Cart, Product, User } = require('../../db/models');
 const order = require('../../db/models/order');
 
 const orderRouter = express.Router();
@@ -18,7 +18,7 @@ orderRouter.post('/', async (req, res) => {
         attributes: ['price', 'stock', 'id'],
       },
     });
-
+    const user = await User.findOne({ where: { id: order.userId } });
     result = result.map((item) => item.get());
     const destroyIds = result.map((item) => item.id);
     const newStocks = result.map((item) => ({
@@ -30,7 +30,7 @@ orderRouter.post('/', async (req, res) => {
     // Promise.all(newStocks.map((item) => Product.update(item, { where: { id: item.id } })));
     let entries = result.map((item) => ({
       ...item,
-      price: item.Product.price,
+      price: (item.Product.price * (100 - user.discount)) / 100,
     }));
 
     entries = entries.map((item) => {
