@@ -27,7 +27,7 @@ module.exports = {
           deliveryAddress:
             "Московская область Красногорский район д. Путилково ул. Сходненская д.38 кв 147",
           discount: 0,
-          roleId: 1,
+          roleId: 3,
           isApproved: true,
         },
         {
@@ -39,7 +39,7 @@ module.exports = {
           deliveryAddress:
             "Московская область Красногорский район д. Путилково ул. Сходненская д.38 кв 147",
           discount: 0,
-          roleId: 3,
+          roleId: 1,
           isApproved: true,
         },
         {

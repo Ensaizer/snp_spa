@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 import type { IProduct } from '../types/ProductType';
 
-const CardItem: FC<IProduct> = ({ id, name, article, price, deliveryTime, description, stock }) => {
+const CardItem: FC<IProduct> = ({ id, name, article, image, price, deliveryTime, description, stock }) => {
   return (
     <Card sx={{ maxWidth: 345 }} component={Link} to={`products/${id}`}>
       <CardActionArea>
-        <CardMedia component="img" height="200" image={`1${id}.jpg`} alt={name} />
+        <CardMedia component="img" height="200" image={`1${image}.jpg`} alt={name} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}
