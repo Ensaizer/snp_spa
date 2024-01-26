@@ -29,7 +29,7 @@ export default function CartPage(): JSX.Element {
   useEffect(() => {
     if (data) {
       const amount = data.reduce((acc, item) => (acc += item.Product.price * item.quantity), 0);
-      setSum(amount);
+      setSum(amount * ((100 - user.discount) / 100));
     }
   }, [data]);
 
@@ -37,124 +37,125 @@ export default function CartPage(): JSX.Element {
     <>
       {isLoading && <h1>Идет загрузка...</h1>}
       <Container>
-      <Typography
-        sx={{ fontSize: '24px', paddingTop: '30px', paddingLeft: '90px', paddingBottom: '20px' }}
-      >
-        Корзина
-      </Typography>
+        <Typography
+          sx={{ fontSize: '24px', paddingTop: '30px', paddingLeft: '90px', paddingBottom: '20px' }}
+        >
+          Корзина
+        </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '25px',
-        }}
-      >
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            padding: '25px',
           }}
         >
-          <Checkbox sx={{marginRight: '10px'}}
-            onChange={() =>
-              setChecked((prev) => {
-                setFlag(!flag);
-                if (flag) {
-                  return [];
-                }
-                if (data) {
-                  return data.map((item) => item.id);
-                }
-              })
-            }
-          />
-          <Typography variant='body1'>Отметить/снять все товары</Typography>
-        </Box>
-
-        <Box
-          sx={{
-            display: 'flex',
-            width: '300px',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-          }}
-        >
-          <Button
-            variant="contained"
-            onClick={() => {
-              void deleteAll(checked);
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
-            Удалить отмеченные
-          </Button>
-        </Box>
-      </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell>Наименование</TableCell>
-              <TableCell align="center">Срок доставки, дней</TableCell>
-              <TableCell align="center">Остаток</TableCell>
-              <TableCell align="center">Мин.заказ</TableCell>
-              <TableCell align="center">Кратность</TableCell>
-              <TableCell align="center">Цена за 1шт</TableCell>
-              <TableCell align="center">В корзине</TableCell>
-              <TableCell align="center">Стоимость</TableCell>
-              <TableCell align="center">Удалить</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data &&
-              data.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  checked={checked.includes(item.id)}
-                  setChecked={setChecked}
-                  setSum={setSum}
-                />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Box
-        sx={{
-          fontSize: '20px',
-          fontWeight: 'bold',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+            <Checkbox
+              sx={{ marginRight: '10px' }}
+              onChange={() =>
+                setChecked((prev) => {
+                  setFlag(!flag);
+                  if (flag) {
+                    return [];
+                  }
+                  if (data) {
+                    return data.map((item) => item.id);
+                  }
+                })
+              }
+            />
+            <Typography variant="body1">Отметить/снять все товары</Typography>
+          </Box>
 
-          marginTop: '30px',
-        }}
-      >
-        {data && data.length !== 0 ? `Общая сумма заказа: ${sum} руб` : 'Ваша корзина пуста'}{' '}
-      </Box>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: '30px',
-        }}
-      >
-        {data && data.length !== 0 && (
-          <Button
-            component={Link}
-            to="/order"
-            variant="contained"
-            color="secondary"
-            sx={{ minWidth: '300px' }}
+          <Box
+            sx={{
+              display: 'flex',
+              width: '300px',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+            }}
           >
-            ЗАКАЗАТЬ
-          </Button>
-        )}
-      </div>
+            <Button
+              variant="contained"
+              onClick={() => {
+                void deleteAll(checked);
+              }}
+            >
+              Удалить отмеченные
+            </Button>
+          </Box>
+        </Box>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell>Наименование</TableCell>
+                <TableCell align="center">Срок доставки, дней</TableCell>
+                <TableCell align="center">Остаток</TableCell>
+                <TableCell align="center">Мин.заказ</TableCell>
+                <TableCell align="center">Кратность</TableCell>
+                <TableCell align="center">Цена за 1шт</TableCell>
+                <TableCell align="center">В корзине</TableCell>
+                <TableCell align="center">Стоимость</TableCell>
+                <TableCell align="center">Удалить</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data &&
+                data.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    checked={checked.includes(item.id)}
+                    setChecked={setChecked}
+                    setSum={setSum}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Box
+          sx={{
+            fontSize: '20px',
+            fontWeight: 'bold',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+            marginTop: '30px',
+          }}
+        >
+          {data && data.length !== 0 ? `Общая сумма заказа: ${sum} руб` : 'Ваша корзина пуста'}{' '}
+        </Box>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '30px',
+          }}
+        >
+          {data && data.length !== 0 && (
+            <Button
+              component={Link}
+              to="/order"
+              variant="contained"
+              color="secondary"
+              sx={{ minWidth: '300px' }}
+            >
+              ЗАКАЗАТЬ
+            </Button>
+          )}
+        </div>
       </Container>
     </>
   );
