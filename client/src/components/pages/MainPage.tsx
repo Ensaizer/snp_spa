@@ -27,26 +27,6 @@ function MainPage(): JSX.Element {
 
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>Sorry we have some error: {error.message}</h2>}
-      {data && (
-              <Paper elevation={16} sx={{display: 'flex', backgroundСolor: '#F0EFFA', overflow: 'hidden'}}>
-                  <ul className="categories__list">
-                      {data.map((el) => (
-                          <li className="categories__item" key={el.id} onClick={() => setSatate(el.id)}>
-                              {el.name}
-                          </li>
-                      ))}
-                  </ul>
-                  {data.map((el) => (
-                      <img
-                          key={el.id}
-                          src={`${el.id}.jpg`}
-                          alt="trucks"
-                          className={el.id === state ? 'categories__img active' : 'categories__img '}
-                      />
-                  ))}
-              </Paper>
-
-      )}
           <div className="main__card">
               {
                   dataCard.map(item => <CardItem

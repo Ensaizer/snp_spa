@@ -44,6 +44,7 @@ function Product(): JSX.Element {
     await create(cart);
     // .then(() => navigate('/cart'));
   };
+  const brands = ['Volvo Trucks', 'Volvo Penta', 'Volvo Construction']
 
   return (
     <>
@@ -62,7 +63,7 @@ function Product(): JSX.Element {
               </Typography>
             </Grid>
             <Grid item xs={8}>
-              <Typography variant="h6">{activeProduct.brandId}</Typography>
+              <Typography variant="h6">{brands[activeProduct.brandId]}</Typography>
             </Grid>
             <Grid item xs={4}>
               <Typography variant="h5" color="primary">
@@ -89,8 +90,8 @@ function Product(): JSX.Element {
               <Typography variant="h6">{activeProduct.description}</Typography>
             </Grid>
           </Grid>
-          <Box>
-            <Box>
+          <Box sx={{minWidth: '250px'}}>
+            <Box sx={{minWidth: '250px'}}>
               <Box sx={{ display: 'flex', gap: '10px' }} mb={2}>
                 <Typography variant="h5" color="primary">
                   В наличии:
